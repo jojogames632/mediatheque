@@ -48,7 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isActive;
+    public $isActive;
 
     /**
      * @ORM\Column(type="string", length=255)

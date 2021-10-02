@@ -1,0 +1,16 @@
+h1 {
+	font-size: 30px;
+	font-family: 'Palatino', sans-serif;
+}
+
+p, 
+span, 
+button, 
+li, 
+h2, 
+h3,
+select,
+a,
+div {
+	font-family: 'Kefa', sans-serif;
+}

@@ -5,13 +5,12 @@ body {
 	justify-content: center;
 	background-image: url('../../images/mediatheque-background.jpg');
 	background-position: center;
-	background-size: cover;	
+	background-size: cover;
 }
 
 form {
-	max-height: 800px;
 	color: white;
-	height: 80vh;
+	height: 40vh;
 	border: 1px solid black;
 	padding: 30px;
 	border-radius: 12px;
@@ -22,7 +21,7 @@ form {
 }
 
 h1 {
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 	white-space: nowrap;
 	text-align: center;
 }
@@ -35,51 +34,20 @@ span {
 	margin-bottom: 5px;
 }
 
-/* very low height screens */
-@media screen and (max-height: 649px) {
-	h1 {
-		font-size: 20px;
-		margin-bottom: 20px;
-	}
-	form {
-		height: 90vh;
-	}
-	input {
-		height: 18px;
-	}
-	span {
-		font-size: 10px;
-	}
-}
-
 /* low height screens */
-@media screen and (min-height: 650px) and (max-height: 849px) {
-	h1 {
-		font-size: 20px;
-		margin-bottom: 20px;
-	}
+@media screen and (max-height: 699px) {
 	form {
-		height: 87vh;
+		height: 80vh;
 	}
-	input {
-		height: 20px;
-	}
-	span {
-		font-size: 12px;
+	h1 {
+		font-size: 25px;
 	}
 }
 
 /* medium height screens */
-@media screen and (min-height: 850px) and (max-height: 1050px) {
-	h1 {
-		font-size: 25px;
-		margin-bottom: 20px;
-	}
-	input {
-		height: 22px;
-	}
+@media screen and (min-height: 700px) and (max-height: 1050px) {
 	form {
-		height: 75vh;
+		height: 60vh;
 	}
 }
 

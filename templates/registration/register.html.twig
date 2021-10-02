@@ -36,12 +36,11 @@
         
         <span>Confirmation du mot de passe</span>
         {{ form_widget(registrationForm.plainPassword.second) }}
+        {{ form_errors(registrationForm.plainPassword.second) }}
 
         <div class="d-flex justify-content-center">
             <a href="{{ path('app_login') }}" class="btn btn-outline-warning mr-5">Annuler</a>
-            <span class="text-center">
-                <button type="submit" class="btn btn-outline-warning">Créer</button>
-            </span>
+            <button type="submit" class="btn btn-outline-warning">Créer</button>
         </div>
     {{ form_end(registrationForm) }}
 {% endblock %}

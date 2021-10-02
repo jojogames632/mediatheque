@@ -48,7 +48,6 @@ class RegistrationController extends AbstractController
      * @Route("/inactive-account", name="inactive_account")
      */
     public function inactiveAccount() {
-
         return $this->render('registration/inactiveAccount.html.twig', []);
     }
 }
