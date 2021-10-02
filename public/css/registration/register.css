@@ -1,0 +1,54 @@
+body {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: url('../../images/mediatheque-background.jpg');
+	background-position: center;
+	background-size: cover;
+	
+}
+
+form {
+	color: white;
+	height: 65vh;
+	border: 1px solid black;
+	padding: 30px;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background: linear-gradient(#304769, #0C1E37);
+}
+
+h1 {
+	margin-bottom: 50px;
+	white-space: nowrap;
+	text-align: center;
+}
+
+input, select {
+	margin-bottom: 25px;
+}
+
+span {
+	margin-bottom: 5px;
+}
+
+/* desktop size */
+@media screen and (min-width: 1200px) and (max-width: 1999px) {
+	form {
+		width: 35vw;
+	}
+}
+
+/* large desktop size */
+@media screen and (min-width: 2000px) {
+	form {
+		width: 25vw;
+	}
+}
+
+li {
+	color: #f56528;
+}

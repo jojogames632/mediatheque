@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer son compte{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/registration/register.css') }}" />
+{% endblock %}
+
+{% block body %}
+    {{ form_start(registrationForm) }}
+    
+        <h1>Créer son compte</h1>
+
+        <span>Nom</span>
+        {{ form_widget(registrationForm.lastname) }}
+        {{ form_errors(registrationForm.lastname) }}
+
+        <span>Prénom</span>
+        {{ form_widget(registrationForm.firstname) }}
+        {{ form_errors(registrationForm.firstname) }}
+
+        <span>Email</span>
+        {{ form_widget(registrationForm.email) }}
+        {{ form_errors(registrationForm.email) }}
+
+        <span>Date de naissance</span>
+        {{ form_widget(registrationForm.birthdate) }}
+        {{ form_errors(registrationForm.birthdate) }}
+
+        <span>Adresse</span>
+        {{ form_widget(registrationForm.address) }}
+        {{ form_errors(registrationForm.address) }}
+
+        <span>Mot de passe</span>
+        {{ form_widget(registrationForm.plainPassword.first) }}
+        {{ form_errors(registrationForm.plainPassword.first) }}
+        
+        <span>Confirmation du mot de passe</span>
+        {{ form_widget(registrationForm.plainPassword.second) }}
+
+        <div class="d-flex justify-content-center">
+            <a href="{{ path('app_login') }}" class="btn btn-outline-warning mr-5">Annuler</a>
+            <span class="text-center">
+                <button type="submit" class="btn btn-outline-warning">Créer</button>
+            </span>
+        </div>
+    {{ form_end(registrationForm) }}
+{% endblock %}
