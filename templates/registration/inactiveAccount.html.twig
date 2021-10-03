@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/registration/inactiveAccount.css') }}" />
+{% endblock %}
+
 {% block body %}
-	<p>Votre compte doit être validé par un employé</p>
+	<p class="text-white mb-5">⛔️ Votre compte doit être validé par un employé ⛔️</p>
 	<a href="{{ path('app_login') }}">Page de connexion</a>
 {% endblock %}

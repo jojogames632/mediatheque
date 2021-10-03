@@ -29,7 +29,8 @@ class RegistrationFormType extends AbstractType
                 'required' => true
             ])
             ->add('birthdate', BirthdayType::class, [
-                'required' => true
+                'required' => true,
+                'format' => 'dd MM yyy'
             ])
             ->add('address', TextType::class, [
                 'constraints' => [
