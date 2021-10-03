@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/registrant/index.css') }}" />
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        {% block profil %}{% endblock %}
+        {% block main %}{% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('js/mobileProfil.js') }}"></script>
+{% endblock %}
