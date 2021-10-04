@@ -1,6 +1,7 @@
 .bookImage {
 	height: 200px;
-	width: 200px;
+	width: 150px;
+	object-fit: contain;
 }
 
 h3 {
@@ -9,4 +10,10 @@ h3 {
 
 .genre {
 	cursor: pointer;
+}
+
+.active {
+	background-color: #FFC20C;
+	border-radius: 10px;
+	padding: 3px;
 }

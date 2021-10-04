@@ -28,14 +28,18 @@ class RegistrantController extends AbstractController
 
         $total = $bookRepository->getTotalBooks($filters);
 
-        // check if it's an ajax request
+        // return json data if a filter is applied
         if ($request->get('ajax')) {
+
             return new JsonResponse([
                 'content' => $this->renderView('registrant/_booksContent.html.twig', [
                     'books' => $books
                 ])
             ]);
         }
+
+        // no filter -> get all books
+        $books = $bookRepository->findAll();
 
         return $this->render('registrant/catalog.html.twig', [
             'books' => $books

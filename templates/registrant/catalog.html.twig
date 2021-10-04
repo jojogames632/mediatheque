@@ -54,8 +54,39 @@
 			</div>
 		</div>
 		
-		{# main #}
-		{% include 'registrant/_booksContent.html.twig' %}
+		{# Search zone #}
+		<div class="w-100 d-flex justify-content-center mt-3">
+			<input type="search" class="mt-3 text-center" id="searchInput" placeholder="Rechercher" />
+		</div>
+
+		{# Filter zone #}
+		<div class="row row-cols-2 text-center mt-5">
+			<div class="col">
+				<span class="genre">Développement personnel</span>
+			</div>
+			<div class="col">
+				<span class="genre">Psychologie</span>
+			</div>
+			<div class="col">
+				<span class="genre">Business</span>
+			</div>
+			<div class="col">
+				<span class="genre">Spiritualité</span>
+			</div>
+			<div class="col">
+				<span class="genre">Productivité</span>
+			</div>
+			<div class="col">
+				<span class="genre">Alimentation</span>
+			</div>
+		</div>
+
+		<hr class="mt-4 mb-5" />
+
+		{# Main #}
+		<main>
+			{% include 'registrant/_booksContent.html.twig' %}
+		</main>
 
 	</div>
 {% endblock %}
