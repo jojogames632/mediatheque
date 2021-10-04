@@ -2,46 +2,60 @@
 
 {% block title %}Inscrit - page d'accueil{% endblock %}
 
-{% block profil %}
-	{# mobile navigation (toggle on) #}
-	<div class="w-100 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
-		<span class="text-white profilTitle ml-3">Compte inscrit</span>
-		<span class="text-white closeBtn d-flex justify-content-center mr-3" onClick="toggleHeader()">X</span>
-		<div id="navigationBackground">
-			<div class="d-flex flex-column justify-content-center align-items-center navContainer">
-				<a href="#" class="text-warning mb-5">Découvrir le catalogue</a>
-				<a href="{{ path('my_borrowed_books') }}" class="text-white">Emprunts en cours</a>
-			</div>
-		</div>
-	</div>
-
-	{# mobile navigation (toggle off) #}
-	<div class="w-100 justify-content-between align-items-center mobileHeader" id="mobileHeaderOff">
-		<span class="text-white mobileProfilTitle ml-3">Compte inscrit</span>
-		<svg 
-			xmlns="http://www.w3.org/2000/svg" 
-			width="40" 
-			height="40" 
-			fill="currentColor" 
-			class="bi bi-list text-white mr-3"
-			id="burgerBtn" 
-			viewBox="0 0 16 16"
-			onClick="toggleHeader()"
-		>
-			<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-		</svg>
-	</div>
-
-	{# desktop navigation #}
-	<div class="col-2 flex-column align-items-center" id="desktopProfil">
-		<span class="mb-5 text-white desktopProfilTitle mt-4">Compte inscrit</span>
-		<a href="#" class="w-100 btn btn-warning mb-2" id="activeLink">Découvrir le catalogue</a>
-		<a href="{{ path('my_borrowed_books') }}" class="w-100 btn btn-outline-warning text-white">Emprunts en cours</a>
-		<a href="{{ path('app_logout') }}" class="w-100 btn btn-outline-warning text-white" id="logoutBtn">Se déconnecter</a>
-	</div>
+{% block stylesheets %}
+	{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/registrant/catalog.css') }}" />
 {% endblock %}
 
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/books.js') }}"></script>
+{% endblock %}
 
-{% block main %}
+{% block body %}
+	<div class="container-fluid p-0">
 
+		{# mobile navigation (toggle on) #}
+		<div class="w-100 p-3 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
+			<span class="text-white mobileProfilTitle ml-3">Compte inscrit</span>
+			<span class="text-white closeBtn mr-3" onClick="toggleHeader()">X</span>
+			<div id="navigationBackground">
+				<div class="d-flex flex-column justify-content-center align-items-center navContainer">
+					<a href="#" class="text-warning mb-5">Découvrir le catalogue</a>
+					<a href="{{ path('my_borrowed_books') }}" class="text-white">Emprunts en cours</a>
+				</div>
+			</div>
+		</div>
+
+		{# mobile navigation (toggle off) #}
+		<div class="w-100 p-3 justify-content-between align-items-center mobileHeader" id="mobileHeaderOff">
+			<span class="text-white mobileProfilTitle ml-3">Compte inscrit</span>
+			<svg 
+				xmlns="http://www.w3.org/2000/svg" 
+				width="40" 
+				height="40" 
+				fill="currentColor" 
+				class="bi bi-list text-white mr-3"
+				id="burgerBtn" 
+				viewBox="0 0 16 16"
+				onClick="toggleHeader()"
+			>
+				<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+			</svg>
+		</div>
+
+		{# desktop navigation #}
+		<div class="row">
+			<div class="col-2 flex-column align-items-center" id="desktopProfil">
+				<span class="mb-5 text-white desktopProfilTitle mt-4">Compte inscrit</span>
+				<a href="#" class="w-100 btn btn-warning mb-2" id="activeLink">Découvrir le catalogue</a>
+				<a href="{{ path('my_borrowed_books') }}" class="w-100 btn btn-outline-warning text-white">Emprunts en cours</a>
+				<a href="{{ path('app_logout') }}" class="w-100 btn btn-outline-warning text-white" id="logoutBtn">Se déconnecter</a>
+			</div>
+		</div>
+		
+		{# main #}
+		{% include 'registrant/_booksContent.html.twig' %}
+
+	</div>
 {% endblock %}

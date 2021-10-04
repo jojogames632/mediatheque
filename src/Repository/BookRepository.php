@@ -19,32 +19,26 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
-    // /**
-    //  * @return Book[] Returns an array of Book objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    public function getPaginatedBooks($filters = null) {
+        $query = $this->createQueryBuilder('b');
 
-    /*
-    public function findOneBySomeField($value): ?Book
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if ($filters != null) {
+            $query->andwhere('b.genre = :genres)')
+                ->setParameter(':genres', $filters);
+        }
+
+        return $query->getQuery()->getResult();
     }
-    */
+
+    public function getTotalBooks($filters = null) {
+        $query = $this->createQueryBuilder('b')
+            ->select('COUNT(b)');
+
+        if ($filters != null) {
+            $query->andwhere('b.genre = :genres)')
+                ->setParameter(':genres', $filters);
+        }
+        
+        return $query->getQuery()->getSingleScalarResult();
+    }
 }

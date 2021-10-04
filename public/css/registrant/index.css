@@ -1,3 +1,7 @@
+body {
+	padding: 0;
+}
+
 .mobileHeader {
 	background: linear-gradient(#304769, #0C1E37);
 	height: 80px;
@@ -10,7 +14,7 @@
 }
 
 .desktopProfilTitle {
-	font-size: 30px;
+	font-size: 26px;
 	white-space: nowrap;
 }
 
@@ -26,18 +30,19 @@ svg {
 #navigationBackground {
 	position: fixed;
 	bottom: 0;
-	top: 0;
+	top: 80px;
 	left: 0;
 	right: 0;
 	background: linear-gradient(#304769, #0C1E37);
-	z-index: -1;
+	height: calc(100vh - 80px);
 }
 
 /* container for navigation links */
 .navContainer {
 	position: fixed;
+	height: calc(100vh - 80px);
 	bottom: 0;
-	top: 0;
+	top: 80px;
 	left: 0;
 	right: 0;
 }

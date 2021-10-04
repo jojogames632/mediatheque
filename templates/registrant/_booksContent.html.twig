@@ -1,0 +1,35 @@
+<div class="w-100 d-flex justify-content-center mt-3">
+	<input type="search" class="mt-3 text-center" placeholder="Rechercher" />
+</div>
+<div class="row row-cols-2 text-center mt-5">
+	<div class="col genre">Développement personnel</div>
+	<div class="col genre">Psychologie</div>
+	<div class="col genre">Business</div>
+	<div class="col genre">Spiritualité</div>
+	<div class="col genre">Productivité</div>
+	<div class="col genre">Alimentation</div>
+</div>
+
+<hr class="mt-4 mb-5" />
+
+{% for book in books %}
+
+	<div class="row text-center d-flex justify-content-center">
+		<div class="col-3">
+			<img src="images/rompre-avec-soi-meme.png" alt="livre développement personnel" class="bookImage">
+		</div>
+		<div class="col-8 p-3">
+			<h3>{{ book.title }}</h3>
+			<p>Parue le {{ book.releaseDate|date('m/d/Y') }}</p>
+			<p>{{ book.author }}</p>
+			<p>{{ book.genre }}</p>
+		</div>
+	</div>
+	<div class="w-100 text-start mt-3 p-4">
+		{{ book.description }}
+	</div>
+	<p class="text-center">
+		<a href="#" class="btn btn-outline-warning">Emprunter</a>
+	</p>
+
+{% endfor %}
