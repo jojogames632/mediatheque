@@ -19,43 +19,40 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
-    // get books according to current page
-    public function getPaginatedBooks($filters = null) {
+    public function getBooksWithFilter($filter = null) {
         $query = $this->createQueryBuilder('b');
 
-        if ($filters != null) {
+        if ($filter != null) {
             $query->andwhere('b.genre = :genres')
-                ->setParameter(':genres', $filters);
+                ->setParameter(':genres', $filter);
         }
 
         return $query->getQuery()->getResult();
     }
 
+    public function getBooksWithTitle($title = null, $filter = null) {
+        $query = $this->createQueryBuilder('b')
+            ->where('b.title LIKE :title')
+            ->setParameter(':title', '%'.$title.'%');
+
+        if ($filter != null) {
+            $query->andwhere('b.genre = :genres')
+                ->setParameter(':genres', $filter);
+        }
+
+        return $query->getQuery()->getResult();
+    }
+    
     // get total books count
-    public function getTotalBooks($filters = null) {
+    public function getTotalBooks($filter = null) {
         $query = $this->createQueryBuilder('b')
             ->select('COUNT(b)');
 
-        if ($filters != null) {
+        if ($filter != null) {
             $query->andwhere('b.genre = :genres')
-                ->setParameter(':genres', $filters);
+                ->setParameter(':genres', $filter);
         }
         
         return $query->getQuery()->getSingleScalarResult();
-    }
-
-    // get books according to current page
-    public function searchBooksWithTitle($title, $filters = null) {
-        $query = $this->createQueryBuilder('b')
-            ->where('b.title LIKE :title')
-            ->setParameter(':title', '%'.$title.'%')
-        ;
-
-        if ($filters != null) {
-            $query->andwhere('b.genre = :genres')
-                ->setParameter(':genres', $filters);
-        }
-
-        return $query->getQuery()->getResult();
     }
 }

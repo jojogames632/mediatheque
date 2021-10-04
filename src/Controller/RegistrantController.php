@@ -22,15 +22,14 @@ class RegistrantController extends AbstractController
         $limit = 10;
         $page = (int)$request->query->get('page', 1);
 
-        $filters = $request->get('genre');
+        $filter = $request->get('genre');
+        $title = $request->get('title');
 
-        $books = $bookRepository->getPaginatedBooks($filters);
+        $total = $bookRepository->getTotalBooks($filter);
 
-        $total = $bookRepository->getTotalBooks($filters);
+        $books = $bookRepository->getBooksWithTitle($title, $filter);
 
-        // return json data if a filter is applied
         if ($request->get('ajax')) {
-
             return new JsonResponse([
                 'content' => $this->renderView('registrant/_booksContent.html.twig', [
                     'books' => $books
@@ -38,7 +37,6 @@ class RegistrantController extends AbstractController
             ]);
         }
 
-        // no filter -> get all books
         $books = $bookRepository->findAll();
 
         return $this->render('registrant/catalog.html.twig', [
