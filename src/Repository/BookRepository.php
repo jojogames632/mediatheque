@@ -44,4 +44,13 @@ class BookRepository extends ServiceEntityRepository
         
         return $query->getQuery()->getSingleScalarResult();
     }
+
+    public function getBorrowedBooks($userId) {
+        $query = $this->createQueryBuilder('b')
+            ->where('b.holder = :userId')
+            ->setParameter(':userId', $userId)
+            ->orderBy('b.reservationDate', 'ASC');
+        
+        return $query->getQuery()->getResult();
+    }
 }

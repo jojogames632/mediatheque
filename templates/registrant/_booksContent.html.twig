@@ -2,20 +2,26 @@
 
 	<div class="row text-center d-flex justify-content-center">
 		<div class="col-3">
-			<img src="images/{{ book.pictureFilename }}" alt="livre développement personnel" class="bookImage">
+			<img src="images/{{ book.pictureFilename }}" alt="livre" class="bookImage">
 		</div>
 		<div class="col-8 p-3">
 			<h3>{{ book.title }}</h3>
 			<p>Parue le {{ book.releaseDate|date('m/d/Y') }}</p>
 			<p>{{ book.author }}</p>
 			<p>{{ book.genre }}</p>
+			{% if book.holder == user %}
+				<p class="borrowedBookInfo">Réservé le {{ book.reservationDate|date('d/m/Y à H:i') }}</p>
+			{% elseif book.isBorrowed %}
+				<p class="borrowedBookInfo">Non disponible</p>
+			{% else %}
+				<a href="{{ path('borrow_book', {id: book.id}) }}" class="btn btn-sm btn-outline-warning">Emprunter</a>
+			{% endif %}
 		</div>
 	</div>
-	<div class="w-100 text-start mt-3 p-4">
+	<div class="w-100 text-start p-4">
 		{{ book.description }}
 	</div>
-	<p class="text-center">
-		<a href="#" class="btn btn-outline-warning">Emprunter</a>
-	</p>
+
+	<hr class="my-4" />
 
 {% endfor %}
