@@ -1,0 +1,72 @@
+{% extends "employee/index.html.twig" %}
+
+{% block title %}Valider les comptes{% endblock %}
+{% block stylesheets %}
+		{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/employee/validAccounts.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+	{# mobile navigation (toggle on) #}
+		<div class="w-100 p-3 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
+			<span class="text-white mobileProfilTitle ml-3">Compte employé</span>
+			<span class="text-white closeBtn mr-3" onClick="toggleHeader()">X</span>
+			<div id="navigationBackground">
+				<div class="d-flex flex-column justify-content-center align-items-center navContainer">
+					<a href="#" class="text-warning mb-5">Valider les comptes</a>
+					<a href="{{ path('add_book') }}" class="text-white">Ajouter un livre</a>
+					<a href="{{ path('confirm_borrowing') }}" class="text-white mt-5">Confirmer un emprunt</a>
+					<a href="{{ path('borrowed_books') }}" class="text-white mt-5">Emprunts en cours</a>
+					<a href="{{ path('app_logout') }}" class="text-white mt-5">Se déconnecter</a>
+				</div>
+			</div>
+		</div>
+
+		{# mobile navigation (toggle off) #}
+		<div class="w-100 p-3 justify-content-between align-items-center mobileHeader" id="mobileHeaderOff">
+			<span class="text-white mobileProfilTitle ml-3">Compte employé</span>
+			<svg 
+				xmlns="http://www.w3.org/2000/svg" 
+				width="40" 
+				height="40" 
+				fill="currentColor" 
+				class="bi bi-list text-white mr-3"
+				id="burgerBtn" 
+				viewBox="0 0 16 16"
+				onClick="toggleHeader()"
+			>
+				<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+			</svg>
+		</div>
+
+		{# desktop navigation #}
+		<div class="row">
+			<div class="col-2 flex-column align-items-center" id="desktopProfil">
+				<span class="mb-5 text-white desktopProfilTitle mt-4">Compte employé</span>
+				<a href="#" class="w-100 btn btn-warning mb-2" id="activeLink">Valider les comptes</a>
+				<a href="{{ path('add_book') }}" class="w-100 btn btn-outline-warning mb-2">Ajouter un livre</a>
+				<a href="{{ path('confirm_borrowing') }}" class="w-100 btn btn-outline-warning mb-2">Confirmer un emprunt</a>
+				<a href="{{ path('borrowed_books') }}" class="w-100 btn btn-outline-warning mb-2">Emprunts en cours</a>
+				<a href="{{ path('app_logout') }}" class="w-100 btn btn-outline-warning" id="logoutBtn">Se déconnecter</a>
+			</div>
+		</div>
+
+		{# main #}
+		<h1 class="text-center my-5">Valider les comptes</h1>
+		{% for user in unActiveUsers %}
+			<div class="row text-center row-cols-3">
+				<div class="col mt-2">{{ user.lastname }}</div>
+				<div class="col mt-2">{{ user.firstname }}</div>
+				<div class="col mt-2">{{ user.email }}</div>
+				<div class="col d-flex align-items-center justify-content-center mt-2">{{ user.address }}</div>
+				<div class="col d-flex align-items-center justify-content-center mt-2">{{ user.birthdate|date('d/m/Y') }}</div>
+				<div class="col d-flex align-items-center justify-content-center mt-2">
+					<a href="{{ path('activate_account', {id: user.id}) }}" class="btn btn-sm btn-warning">Activer</a>
+				</div>
+			</div>
+
+			<hr class="my-4" />
+		{% endfor %}
+	
+{% endblock %}

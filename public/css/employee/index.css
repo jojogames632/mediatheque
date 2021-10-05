@@ -1,0 +1,105 @@
+body {
+	padding: 0;
+}
+
+.mobileHeader {
+	background: linear-gradient(#304769, #0C1E37);
+	height: 80px;
+}
+
+/* 'Compte inscrit' or 'Compte employé' */
+.mobileProfilTitle {
+	font-size: 22px;
+	white-space: nowrap;
+}
+
+.desktopProfilTitle {
+	font-size: 26px;
+	white-space: nowrap;
+}
+
+.closeBtn {
+	font-size: 30px;
+	cursor: pointer;
+}
+
+svg {
+	cursor: pointer;
+}
+
+#navigationBackground {
+	position: fixed;
+	bottom: 0;
+	top: 80px;
+	left: 0;
+	right: 0;
+	background: linear-gradient(#304769, #0C1E37);
+	height: calc(100vh - 80px);
+}
+
+/* container for navigation links */
+.navContainer {
+	position: fixed;
+	height: calc(100vh - 80px);
+	bottom: 0;
+	top: 80px;
+	left: 0;
+	right: 0;
+}
+
+/* navigation links */
+.navContainer a {
+	font-size: 25px;
+	text-decoration: none; 
+}
+
+#desktopProfil {
+	background: linear-gradient(#304769, #0C1E37);
+	height: 100vh;
+	position: relative;
+}
+
+#activeLink {
+	color: #405880;
+}
+
+#logoutBtn {
+	position: absolute;
+	bottom: 10px;
+	max-width: 90%;
+}
+
+/* Responsive design *********************************************************************/
+
+/* [for desktop] show desktop profil & hide mobile profil */
+@media screen and (min-width: 1000px) {
+	#desktopProfil {
+		display: flex;
+	}
+	#mobileHeaderOff {
+		display: none !important; /* keep mobile header hidden when on desktop*/
+	}
+}
+
+/* [for mobiles] show mobile profil & hide desktop profil */
+@media screen and (max-width: 999px) {
+	#desktopProfil {
+		display: none;
+	}
+	#mobileHeaderOff {
+		display: flex;
+	}
+}
+
+/* Adjust profil text size */
+@media screen and (max-width: 1300px) {
+	.desktopProfilTitle {
+		font-size: 25px;
+	}
+	#desktopProfil a {
+		font-size: 12px;
+		white-space: nowrap;
+	}
+}
+
+

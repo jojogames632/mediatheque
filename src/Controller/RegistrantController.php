@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/registrant")
@@ -51,7 +52,7 @@ class RegistrantController extends AbstractController
     /**
      * @Route("/my-borrowed-books", name="my_borrowed_books")
      */
-    public function myBorrowedBooks(BookRepository $bookRepository)
+    public function getMyBorrowedBooks(BookRepository $bookRepository)
     {
         $userId = $this->getUser()->getId();
         $borrowedBooks = $bookRepository->getBorrowedBooks($userId); 
@@ -71,8 +72,13 @@ class RegistrantController extends AbstractController
         }
 
         $user = $this->getUser();
-
         $book = $bookRepository->find($id);
+
+        // stop action if book is already borrowed *** [security] ***
+        if ($book->getIsBorrowed()) {
+            throw new AccessDeniedException('Vous ne pouvez pas emprunter un livre déjà emprunté');
+        }
+
         $book->setReservationDate(new DateTime());
         $book->setIsBorrowed(true);
         $book->setHolder($user);
