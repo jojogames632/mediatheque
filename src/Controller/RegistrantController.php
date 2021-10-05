@@ -27,7 +27,7 @@ class RegistrantController extends AbstractController
 
         $total = $bookRepository->getTotalBooks($filter);
 
-        $books = $bookRepository->getBooksWithTitle($title, $filter);
+        $books = $bookRepository->getBooksWithTitleAndFilter($title, $filter);
 
         if ($request->get('ajax')) {
             return new JsonResponse([

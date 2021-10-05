@@ -19,18 +19,7 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
-    public function getBooksWithFilter($filter = null) {
-        $query = $this->createQueryBuilder('b');
-
-        if ($filter != null) {
-            $query->andwhere('b.genre = :genres')
-                ->setParameter(':genres', $filter);
-        }
-
-        return $query->getQuery()->getResult();
-    }
-
-    public function getBooksWithTitle($title = null, $filter = null) {
+    public function getBooksWithTitleAndFilter($title = null, $filter = null) {
         $query = $this->createQueryBuilder('b')
             ->where('b.title LIKE :title')
             ->setParameter(':title', '%'.$title.'%');
