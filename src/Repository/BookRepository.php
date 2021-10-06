@@ -53,4 +53,12 @@ class BookRepository extends ServiceEntityRepository
         
         return $query->getQuery()->getResult();
     }
+
+    public function getAllBorrowedBooks() {
+        $query = $this->createQueryBuilder('b')
+            ->where('b.borrowingDate IS NOT NULL')
+            ->orderBy('b.borrowingDate', 'ASC');
+        
+        return $query->getQuery()->getResult();
+    }
 }

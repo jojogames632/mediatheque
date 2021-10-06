@@ -82,7 +82,7 @@ class EmployeeController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        return $this->redirectToRoute('employee_home');
+        return $this->redirectToRoute('validate_accounts_list');
     }
 
     /**
@@ -132,8 +132,6 @@ class EmployeeController extends AbstractController
      */
     public function getConfirmBorrowingList(BookRepository $bookRepository)
     {   
-        $user = $this->getUser();
-
         $books = $bookRepository->findBy([
             'isBorrowed' => true,
             'borrowingDate' => null
@@ -141,7 +139,6 @@ class EmployeeController extends AbstractController
 
         return $this->render('employee/confirmBorrowing.html.twig', [
             'books' => $books,
-            'user' => $user
         ]);
     }
 
@@ -156,6 +153,11 @@ class EmployeeController extends AbstractController
 
         $book = $bookRepository->find($id);
 
+        // prevent employees to use this function on wrong books when typing this route in url directly *** [Security] ***
+        if ($book->getBorrowingDate()) {
+            throw $this->createAccessDeniedException('Vous ne pouvez pas confirmer l\'emprunt d\'un livre déja emprunté');
+        }
+
         $book->setBorrowingDate(new DateTime());
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -166,12 +168,25 @@ class EmployeeController extends AbstractController
     }
 
     /**
-     * @Route("/borrowed-books", name="borrowed_books")
+     * @Route("/borrowed-books-list", name="borrowed_books_list")
      */
-    public function getBorrowedBooks()
+    public function getBorrowedBooksList(BookRepository $bookRepository)
     {
-        return $this->render('employee/borrowedBooks.html.twig', [
+        $books = $bookRepository->getAllBorrowedBooks(); 
 
+        return $this->render('employee/borrowedBooks.html.twig', [
+            'books' => $books,
         ]);
     }
+
+    /**
+     * @Route("/confirm-return/{id<\d+>}", name="confirm_return")
+     */
+    public function confirmReturn(BookRepository $bookRepository)
+    {
+        
+
+        return $this->redirectToRoute('borrowed_books_list');
+    }
+
 }
