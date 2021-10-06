@@ -1,9 +1,14 @@
 {% extends "employee/index.html.twig" %}
 
-{% block title %}Valider les comptes{% endblock %}
+{% block title %}Découvrir le catalogue{% endblock %}
 {% block stylesheets %}
-		{{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/employee/validAccounts.css') }}" />
+	{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/employee/catalog.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/books.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -14,7 +19,8 @@
 			<span class="text-white closeBtn mr-3" onClick="toggleHeader()">X</span>
 			<div id="navigationBackground">
 				<div class="d-flex flex-column justify-content-center align-items-center navContainer">
-					<a href="#" class="text-warning mb-5">Valider les comptes</a>
+					<a href="#" class="text-warning mb-5">Découvrir le catalogue</a>
+					<a href="{{ path('validate_accounts') }}" class="text-white mb-5">Valider les comptes</a>
 					<a href="{{ path('add_book') }}" class="text-white">Ajouter un livre</a>
 					<a href="{{ path('confirm_borrowing') }}" class="text-white mt-5">Confirmer un emprunt</a>
 					<a href="{{ path('borrowed_books') }}" class="text-white mt-5">Emprunts en cours</a>
@@ -44,7 +50,8 @@
 		<div class="row">
 			<div class="col-2 flex-column align-items-center" id="desktopProfil">
 				<span class="mb-5 text-white desktopProfilTitle mt-4">Compte employé</span>
-				<a href="#" class="w-100 btn btn-warning mb-2" id="activeLink">Valider les comptes</a>
+				<a href="#" class="w-100 btn btn-warning mb-2" id="activeLink">Découvrir le catalogue</a>
+				<a href="{{ path('validate_accounts') }}" class="w-100 btn btn-outline-warning mb-2">Valider les comptes</a>
 				<a href="{{ path('add_book') }}" class="w-100 btn btn-outline-warning mb-2">Ajouter un livre</a>
 				<a href="{{ path('confirm_borrowing') }}" class="w-100 btn btn-outline-warning mb-2">Confirmer un emprunt</a>
 				<a href="{{ path('borrowed_books') }}" class="w-100 btn btn-outline-warning mb-2">Emprunts en cours</a>
@@ -52,21 +59,27 @@
 			</div>
 		</div>
 
-		{# main #}
-		<h1 class="text-center my-5">Valider les comptes</h1>
-		{% for user in unActiveUsers %}
-			<div class="row text-center row-cols-3">
-				<div class="col mt-2">{{ user.lastname }}</div>
-				<div class="col mt-2">{{ user.firstname }}</div>
-				<div class="col mt-2">{{ user.email }}</div>
-				<div class="col d-flex align-items-center justify-content-center mt-2">{{ user.address }}</div>
-				<div class="col d-flex align-items-center justify-content-center mt-2">{{ user.birthdate|date('d/m/Y') }}</div>
-				<div class="col d-flex align-items-center justify-content-center mt-2">
-					<a href="{{ path('activate_account', {id: user.id}) }}" class="btn btn-sm btn-warning">Activer</a>
-				</div>
-			</div>
+		{# Search zone #}
+		<div class="w-100 d-flex justify-content-center mt-3">
+			<input type="search" class="mt-3 text-center" id="searchInput" placeholder="Rechercher par titre" />
+		</div>
 
-			<hr class="my-4" />
-		{% endfor %}
+		{# Filter zone #}
+		<div class="row row-cols-2 text-center mt-5">
+			<div class="col"><span class="genre">Développement personnel</span></div>
+			<div class="col"><span class="genre">Psychologie</span></div>
+			<div class="col"><span class="genre">Business</span></div>
+			<div class="col"><span class="genre">Spiritualité</span></div>
+			<div class="col"><span class="genre">Productivité</span></div>
+			<div class="col"><span class="genre">Alimentation</span></div>
+		</div>
+
+		<hr class="mt-4 mb-5" />
+
+		{# Main #}
+		<main>
+			{% include 'employee/_booksContent.html.twig' %}
+		</main>
+
 	
 {% endblock %}

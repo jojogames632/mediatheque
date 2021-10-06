@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Form\BookType;
+use App\Repository\BookRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/employee")
@@ -21,11 +23,44 @@ class EmployeeController extends AbstractController
     /**
      * @Route("", name="employee_home")
      */
-    public function index(UserRepository $userRepository): Response
+    public function index(Request $request, BookRepository $bookRepository): Response
+    {
+        $limit = 10;
+        $page = (int)$request->query->get('page', 1);
+
+        $filter = $request->get('genre');
+        $title = $request->get('title');
+
+        $total = $bookRepository->getTotalBooks($filter);
+
+        $user = $this->getUser();
+        $books = $bookRepository->getBooksWithTitleAndFilter($title, $filter);
+
+        if ($request->get('ajax')) {
+            return new JsonResponse([
+                'content' => $this->renderView('employee/_booksContent.html.twig', [
+                    'books' => $books,
+                    'user' => $user
+                ])
+            ]);
+        }
+
+        $books = $bookRepository->findAll();
+
+        return $this->render('employee/catalog.html.twig', [
+            'books' => $books,
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * @Route("/validate-accounts", name="validate_accounts")
+     */
+    public function validateAccounts(UserRepository $userRepository): Response
     {
         $unActiveUsers = $userRepository->findBy(['isActive' => false]);
 
-        return $this->render('employee/validAccounts.html.twig', [
+        return $this->render('employee/validateAccounts.html.twig', [
             'unActiveUsers' => $unActiveUsers
         ]);
     }

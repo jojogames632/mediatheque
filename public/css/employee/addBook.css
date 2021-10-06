@@ -3,7 +3,8 @@ form {
 }
 
 input,
-select {
+select,
+textarea {
 	margin-bottom: 15px;
 }
 

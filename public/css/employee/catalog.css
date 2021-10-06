@@ -1,0 +1,29 @@
+.bookImage {
+	height: 200px;
+	width: 150px;
+	object-fit: contain;
+}
+
+h3 {
+	font-size: 20px;
+}
+
+.genre {
+	cursor: pointer;
+}
+
+.active {
+	background-color: #FFC20C;
+	border-radius: 10px;
+	padding: 3px;
+}
+
+.borrowedBookInfo {
+	color: #F58728;
+	font-size: 18px;
+}
+
+.no-margin {
+	margin: 0;
+	line-height: 0;
+}
