@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/employee")
@@ -52,6 +53,35 @@ class EmployeeController extends AbstractController
             'books' => $books,
             'user' => $user
         ]);
+    }
+
+    /**
+     * @Route("/borrow-book/{id<\d+>}", name="borrow_book_employee")
+     */
+    public function borrowBook($id, BookRepository $bookRepository)
+    {
+        if (!$bookRepository->find($id)) {
+            throw $this->createNotFoundException(sprintf('Le livre avec l\'id %s n\'existe pas', $id));
+        }
+
+        $user = $this->getUser();
+        $book = $bookRepository->find($id);
+
+        // stop action if book is already borrowed *** [security] ***
+        if ($book->getIsBorrowed()) {
+            throw new AccessDeniedException('Vous ne pouvez pas emprunter un livre déjà emprunté');
+        }
+
+        $book->setReservationDate(new DateTime());
+        $book->setBorrowingDate(new DateTime());
+        $book->setIsBorrowed(true);
+        $book->setHolder($user);
+
+        $entitManager = $this->getDoctrine()->getManager();
+        $entitManager->persist($book);
+        $entitManager->flush();
+
+        return $this->redirectToRoute('employee_home');
     }
 
     /**

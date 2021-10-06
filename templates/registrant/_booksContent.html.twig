@@ -18,7 +18,7 @@
 			{% elseif book.isBorrowed %}
 				<p class="borrowedBookInfo">Non disponible</p>
 			{% else %}
-				<a href="{{ path('borrow_book', {id: book.id}) }}" class="btn btn-sm btn-outline-warning">Emprunter</a>
+				<a href="{{ path('borrow_book_registrant', {id: book.id}) }}" class="btn btn-sm btn-outline-warning">Emprunter</a>
 			{% endif %}
 		</div>
 	</div>

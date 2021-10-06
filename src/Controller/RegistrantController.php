@@ -63,7 +63,7 @@ class RegistrantController extends AbstractController
     }
 
     /**
-     * @Route("/borrow-book/{id<\d+>}", name="borrow_book")
+     * @Route("/borrow-book/{id<\d+>}", name="borrow_book_registrant")
      */
     public function borrowBook($id, BookRepository $bookRepository)
     {
