@@ -1,0 +1,21 @@
+form {
+	width: 80vw;
+}
+
+input,
+select {
+	margin-bottom: 15px;
+}
+
+label {
+	margin-bottom: 5px;
+}
+
+li {
+	color: #C63840;
+}
+
+main {
+	background-color: #E9EAED;
+	height: calc(100vh - 80px);
+}

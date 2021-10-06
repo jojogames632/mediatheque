@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
+use App\Form\BookType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @Route("/employee")
@@ -47,10 +52,42 @@ class EmployeeController extends AbstractController
     /**
      * @Route("/add-book", name="add_book")
      */
-    public function addBook()
+    public function addBook(Request $request, SluggerInterface $slugger)
     {
-        return $this->render('employee/addBook.html.twig', [
+        $book = new Book();
 
+        $form = $this->createForm(BookType::class, $book);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageFile = $form->get('pictureFilename')->getData();
+
+            $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+
+            try {
+                $imageFile->move(
+                    $this->getParameter('books_image_directory'),
+                    $newFilename
+                );
+            } catch (FileException $e) {
+                throw $this->createNotFoundException('Erreur lors du téléchargement de votre image');
+            }
+
+            $book->setPictureFilename($newFilename);
+            $book->setIsBorrowed(false);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($book);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Livre créé avec succès !');
+        }
+
+        return $this->render('employee/addBook.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 

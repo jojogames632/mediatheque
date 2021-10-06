@@ -11,6 +11,8 @@ h2,
 h3,
 select,
 a,
-div {
+div,
+input,
+textarea {
 	font-family: 'Kefa', sans-serif;
 }
