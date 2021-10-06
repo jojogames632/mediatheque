@@ -13,7 +13,7 @@
 				<p class="borrowedBookInfo">Réservé le {{ book.reservationDate|date('d/m/Y à H:i') }}</p>
 			{% elseif book.isBorrowed %}
 				<p class="borrowedBookInfo">Non disponible</p>
-				<p class="borrowedBookInfo no-margin">Réservé par {{ user.firstname }} {{ user.lastname }}</p>
+				<p class="borrowedBookInfo no-margin">{{ book.borrowingDate ? 'Emprunté par' : 'Réservé par' }} {{ user.firstname }} {{ user.lastname }}</p>
 			{% else %}
 				<a href="{{ path('borrow_book', {id: book.id}) }}" class="btn btn-sm btn-outline-warning">Emprunter</a>
 			{% endif %}

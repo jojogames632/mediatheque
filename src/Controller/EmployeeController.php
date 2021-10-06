@@ -182,9 +182,27 @@ class EmployeeController extends AbstractController
     /**
      * @Route("/confirm-return/{id<\d+>}", name="confirm_return")
      */
-    public function confirmReturn(BookRepository $bookRepository)
+    public function confirmReturn($id, BookRepository $bookRepository)
     {
-        
+        if (!$bookRepository->find($id)) {
+            throw $this->createNotFoundException(sprintf('Le livre avec l\'id %s n\'existe pas', $id));
+        }
+
+        $book = $bookRepository->find($id);
+
+        // prevent employees to use this function on wrong books when typing this route in url directly *** [Security] ***
+        if (!$book->getBorrowingDate()) {
+            throw $this->createAccessDeniedException('Vous ne pouvez pas confirmer le retour d\'un livre non emprunté');
+        }
+
+        $book->setIsBorrowed(false);
+        $book->setReservationDate(null);
+        $book->setBorrowingDate(null);
+        $book->setHolder(null);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($book);
+        $entityManager->flush();
 
         return $this->redirectToRoute('borrowed_books_list');
     }

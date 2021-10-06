@@ -49,7 +49,8 @@ class BookRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('b')
             ->where('b.holder = :userId')
             ->setParameter(':userId', $userId)
-            ->orderBy('b.reservationDate', 'ASC');
+            ->andWhere('b.borrowingDate IS NOT NULL')
+            ->orderBy('b.borrowingDate', 'ASC');
         
         return $query->getQuery()->getResult();
     }
