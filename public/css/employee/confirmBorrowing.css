@@ -1,0 +1,9 @@
+.bookImage {
+	height: 200px;
+	width: 150px;
+	object-fit: contain;
+}
+
+.holderTitle {
+	font-size: 20px;
+}

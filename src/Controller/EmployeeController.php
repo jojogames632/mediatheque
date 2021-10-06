@@ -6,6 +6,7 @@ use App\Entity\Book;
 use App\Form\BookType;
 use App\Repository\BookRepository;
 use App\Repository\UserRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -54,9 +55,9 @@ class EmployeeController extends AbstractController
     }
 
     /**
-     * @Route("/validate-accounts", name="validate_accounts")
+     * @Route("/validate-accounts-list", name="validate_accounts_list")
      */
-    public function validateAccounts(UserRepository $userRepository): Response
+    public function getValidateAccountsList(UserRepository $userRepository): Response
     {
         $unActiveUsers = $userRepository->findBy(['isActive' => false]);
 
@@ -66,7 +67,7 @@ class EmployeeController extends AbstractController
     }
 
     /**
-     * @Route("/activate-account/{id<\d+>}", name="activate_account")
+     * @Route("/validate-account/{id<\d+>}", name="validate_account")
      */
     public function activateAccount($id, UserRepository $userRepository)
     {   
@@ -127,13 +128,41 @@ class EmployeeController extends AbstractController
     }
 
     /**
-     * @Route("/confirm-borrowing", name="confirm_borrowing")
+     * @Route("/confirm-borrowing-list", name="confirm_borrowing_list")
      */
-    public function confirmBorrowing()
-    {
-        return $this->render('employee/confirmBorrowing.html.twig', [
+    public function getConfirmBorrowingList(BookRepository $bookRepository)
+    {   
+        $user = $this->getUser();
 
+        $books = $bookRepository->findBy([
+            'isBorrowed' => true,
+            'borrowingDate' => null
         ]);
+
+        return $this->render('employee/confirmBorrowing.html.twig', [
+            'books' => $books,
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * @Route("/confirm-borrowing/{id<\d+>}", name="confirm_borrowing")
+     */
+    public function confirmBorrowing($id, BookRepository $bookRepository)
+    {
+        if (!$bookRepository->find($id)) {
+            throw $this->createNotFoundException(sprintf('Le livre avec l\'id %s n\'existe pas', $id));
+        }
+
+        $book = $bookRepository->find($id);
+
+        $book->setBorrowingDate(new DateTime());
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($book);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('confirm_borrowing_list');
     }
 
     /**

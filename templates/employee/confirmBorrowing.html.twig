@@ -15,7 +15,7 @@
 			<div id="navigationBackground">
 				<div class="d-flex flex-column justify-content-center align-items-center navContainer">
 					<a href="{{ path('employee_home') }}" class="text-white mb-5">Découvrir le catalogue</a>
-					<a href="{{ path('validate_accounts') }}" class="text-white mb-5">Valider les comptes</a>
+					<a href="{{ path('validate_accounts_list') }}" class="text-white mb-5">Valider les comptes</a>
 					<a href="{{ path('add_book') }}" class="text-white">Ajouter un livre</a>
 					<a href="#" class="text-warning mt-5">Confirmer un emprunt</a>
 					<a href="{{ path('borrowed_books') }}" class="text-white mt-5">Emprunts en cours</a>
@@ -46,12 +46,51 @@
 			<div class="col-2 flex-column align-items-center" id="desktopProfil">
 				<span class="mb-5 text-white desktopProfilTitle mt-4">Compte employé</span>
 				<a href="{{ path('employee_home') }}" class="w-100 btn btn-outline-warning mb-2" >Découvrir le catalogue</a>
-				<a href="{{ path('validate_accounts') }}" class="w-100 btn btn-outline-warning mb-2" >Valider les comptes</a>
+				<a href="{{ path('validate_accounts_list') }}" class="w-100 btn btn-outline-warning mb-2" >Valider les comptes</a>
 				<a href="{{ path('add_book') }}" class="w-100 btn btn-outline-warning mb-2">Ajouter un livre</a>
 				<a href="#" class="w-100 btn btn-warning mb-2" id="activeLink">Confirmer un emprunt</a>
 				<a href="{{ path('borrowed_books') }}" class="w-100 btn btn-outline-warning mb-2">Emprunts en cours</a>
 				<a href="{{ path('app_logout') }}" class="w-100 btn btn-outline-warning" id="logoutBtn">Se déconnecter</a>
 			</div>
 		</div>
+
+		{# main #}
+		<h1 class="text-center my-5">Confirmer un emprunt</h1>
+
+		{% if books|length == 0 %}
+			<p class="text-center">Aucun emprunt à confirmer</p>
+		{% else %}
+			{% for book in books %}
+				<div class="row text-center d-flex justify-content-center">
+					<div class="col-3 d-flex justify-content-center align-items-center">
+						<img src="{{ asset('uploads/' ~ book.pictureFilename) }}" alt="livre" class="bookImage">
+					</div>
+					<div class="col-7 p-3">
+						<h3>{{ book.title }}</h3>
+						<p>Parue le {{ book.releaseDate|date('m/d/Y') }}</p>
+						<p>{{ book.author }}</p>
+						<p>{{ book.genre }}</p>
+					</div>
+				</div>
+				<div class="w-100 text-start p-4">
+					{{ book.description }}
+				</div>
+
+				{# Holder infos #}
+				<h2 class="text-center mt-3 holderTitle">Réservé le {{ book.reservationDate|date('d/m/Y') }} par :</h2>
+				<div class="row row-cols-2">
+					<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.lastname }}</div>
+					<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.firstname }}</div>
+					<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.email }}</div>
+					<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.address }}</div>
+					<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.birthdate|date('d-m-Y') }}</div>
+					<div class="col mt-2 d-flex justify-content-center align-items-center">
+						<a href="{{ path('confirm_borrowing', {id: book.id}) }}" class="btn btn-sm btn-warning">Confirmer l'emprunt</a>
+					</div>
+				</div>
+
+				<hr class="my-5" />	
+			{% endfor %}
+		{% endif %}
 	
 {% endblock %}
