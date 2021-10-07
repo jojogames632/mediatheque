@@ -7,6 +7,7 @@ use App\Form\BookType;
 use App\Repository\BookRepository;
 use App\Repository\UserRepository;
 use DateTime;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,34 +25,34 @@ class EmployeeController extends AbstractController
     /**
      * @Route("", name="employee_home")
      */
-    public function index(Request $request, BookRepository $bookRepository): Response
+    public function index(Request $request, BookRepository $bookRepository, PaginatorInterface $paginator): Response
     {
         $this->updateBooksReservation($bookRepository);
-
-        $limit = 10;
-        $page = (int)$request->query->get('page', 1);
 
         $filter = $request->get('genre');
         $title = $request->get('title');
 
-        $total = $bookRepository->getTotalBooks($filter);
+        $limit = 10;
+        $page = $request->query->get('page', 1);
 
         $user = $this->getUser();
         $books = $bookRepository->getBooksWithTitleAndFilter($title, $filter);
+        $paginatedBooks = $paginator->paginate($books, $page, $limit);
 
         if ($request->get('ajax')) {
             return new JsonResponse([
                 'content' => $this->renderView('employee/_booksContent.html.twig', [
-                    'books' => $books,
+                    'books' => $paginatedBooks,
                     'user' => $user
                 ])
             ]);
         }
 
         $books = $bookRepository->findAll();
+        $paginatedBooks = $paginator->paginate($books, $page, $limit);
 
         return $this->render('employee/catalog.html.twig', [
-            'books' => $books,
+            'books' => $paginatedBooks,
             'user' => $user
         ]);
     }
@@ -170,7 +171,7 @@ class EmployeeController extends AbstractController
             $entityManager->persist($book);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Livre créé avec succès !');
+            $this->addFlash('success', 'Livre ajouté avec succès !');
         }
 
         return $this->render('employee/addBook.html.twig', [

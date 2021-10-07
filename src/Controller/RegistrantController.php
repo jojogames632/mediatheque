@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\BookRepository;
 use DateTime;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,34 +20,34 @@ class RegistrantController extends AbstractController
     /**
      * @Route("", name="registrant_home")
      */
-    public function index(Request $request, BookRepository $bookRepository): Response
+    public function index(Request $request, BookRepository $bookRepository, PaginatorInterface $paginator): Response
     {
         $this->updateBooksReservation($bookRepository);
         
-        $limit = 10;
-        $page = (int)$request->query->get('page', 1);
-
         $filter = $request->get('genre');
         $title = $request->get('title');
 
-        $total = $bookRepository->getTotalBooks($filter);
+        $limit = 10;
+        $page = $request->query->getInt('page', 1);
 
         $user = $this->getUser();
         $books = $bookRepository->getBooksWithTitleAndFilter($title, $filter);
+        $paginatedBooks = $paginator->paginate($books, $page, $limit);
 
         if ($request->get('ajax')) {
             return new JsonResponse([
                 'content' => $this->renderView('registrant/_booksContent.html.twig', [
-                    'books' => $books,
+                    'books' => $paginatedBooks,
                     'user' => $user
                 ])
             ]);
         }
 
         $books = $bookRepository->findAll();
+        $paginatedBooks = $paginator->paginate($books, $page, $limit);
 
         return $this->render('registrant/catalog.html.twig', [
-            'books' => $books,
+            'books' => $paginatedBooks,
             'user' => $user
         ]);
     }

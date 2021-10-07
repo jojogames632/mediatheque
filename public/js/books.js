@@ -1,4 +1,6 @@
 const Genres = document.querySelectorAll('.genre');
+const paginationContainer = document.getElementById('paginationContainer');
+var searchInput = document.getElementById('searchInput');
 var currentGenre = '';
 
 Genres.forEach((genre) => {
@@ -7,6 +9,8 @@ Genres.forEach((genre) => {
 		if (genre.classList.contains('active')) {
 			genre.classList.remove('active');
 			currentGenre = '';
+			// show pagination
+			paginationContainer.classList.add('d-flex');
 		}
 		else {
 			Genres.forEach((genre) => {
@@ -15,8 +19,12 @@ Genres.forEach((genre) => {
 
 			genre.classList.add('active');
 			currentGenre = genre.innerHTML;
+			searchInput.value = '';		
+			// hide pagination (not working with async filters)
+			paginationContainer.classList.remove('d-flex');
+			paginationContainer.style.display = 'none';
 		}
-				
+
 		const Url = new URL(window.location.href);
 
 		// get books according to genre selectionned
@@ -33,9 +41,18 @@ Genres.forEach((genre) => {
 	});
 });
 
-var searchInput = document.getElementById('searchInput');
-
 searchInput.addEventListener('input', (event) => {
+
+	if (event.target.value == '' & currentGenre == '') {
+		// show pagination if no input & filter
+		paginationContainer.classList.add('d-flex');
+	}
+	else {
+		// hide pagination (not working with async filters)
+		paginationContainer.classList.remove('d-flex');
+		paginationContainer.style.display = 'none';
+	}
+	
 	const Url = new URL(window.location.href);
 
 	if (currentGenre != null) {

@@ -27,3 +27,16 @@ main {
 	height: calc(100vh - 450px);
 	overflow: scroll;
 }
+
+/* override default knp paginator color */
+.pagination li a {
+	color: #FFC20C;
+}
+
+.pagination li a:hover {
+	color: black;
+}
+
+.active span {
+	background-color: #FFC20C !important; /*  IMPORTANT **********************  CARE /!\ */
+}

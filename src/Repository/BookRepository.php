@@ -31,19 +31,6 @@ class BookRepository extends ServiceEntityRepository
 
         return $query->getQuery()->getResult();
     }
-    
-    // get total books count
-    public function getTotalBooks($filter = null) {
-        $query = $this->createQueryBuilder('b')
-            ->select('COUNT(b)');
-
-        if ($filter != null) {
-            $query->andwhere('b.genre = :genres')
-                ->setParameter(':genres', $filter);
-        }
-        
-        return $query->getQuery()->getSingleScalarResult();
-    }
 
     public function getBorrowedBooks($userId) {
         $query = $this->createQueryBuilder('b')

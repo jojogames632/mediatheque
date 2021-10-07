@@ -12,15 +12,13 @@
 		<div class="w-100 p-3 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
 			<span class="text-white mobileProfilTitle ml-3">Compte employé</span>
 			<span class="text-white closeBtn mr-3" onClick="toggleHeader()">X</span>
-			<div id="navigationBackground">
-				<div class="d-flex flex-column justify-content-center align-items-center navContainer">
-					<a href="{{ path('employee_home') }}" class="text-white mb-5">Découvrir le catalogue</a>
-					<a href="{{ path('validate_accounts_list') }}" class="text-white mb-5">Valider les comptes</a>
-					<a href="#" class="text-warning">Ajouter un livre</a>
-					<a href="{{ path('confirm_borrowing_list') }}" class="text-white mt-5">Confirmer un emprunt</a>
-					<a href="{{ path('borrowed_books_list') }}" class="text-white mt-5">Emprunts en cours</a>
-					<a href="{{ path('app_logout') }}" class="text-white mt-5">Se déconnecter</a>
-				</div>
+			<div class="d-flex flex-column justify-content-center align-items-center navContainer">
+				<a href="{{ path('employee_home') }}" class="text-white mb-5">Découvrir le catalogue</a>
+				<a href="{{ path('validate_accounts_list') }}" class="text-white mb-5">Valider les comptes</a>
+				<a href="#" class="text-warning">Ajouter un livre</a>
+				<a href="{{ path('confirm_borrowing_list') }}" class="text-white mt-5">Confirmer un emprunt</a>
+				<a href="{{ path('borrowed_books_list') }}" class="text-white mt-5">Emprunts en cours</a>
+				<a href="{{ path('app_logout') }}" class="text-white mt-5">Se déconnecter</a>
 			</div>
 		</div>
 
