@@ -70,27 +70,41 @@
 			</div>
 		</div>
 		
-		{% for book in borrowedBooks %}
+		{% if borrowedBooks|length > 0 %}
+			{% for book in borrowedBooks %}
 
-			<div class="row text-center d-flex justify-content-center mt-4">
-				<div class="col-3 d-flex justify-content-center align-items-center">
-					<img src="{{ asset('uploads/' ~ book.pictureFilename) }}" alt="livre" class="bookImage">
+				<div class="row text-center d-flex justify-content-center mt-4">
+					<div class="col-3 d-flex justify-content-center align-items-center">
+						<img src="{{ asset('uploads/' ~ book.pictureFilename) }}" alt="livre" class="bookImage">
+					</div>
+					<div class="col-7 p-3">
+						<h3>{{ book.title }}</h3>
+						<p>Parue le {{ book.releaseDate|date('m/d/Y') }}</p>
+						<p>{{ book.author }}</p>
+						<p>{{ book.genre }}</p>
+						<p class="borrowedBookInfo">Emprunté le {{ book.borrowingDate|date('d/m/Y à H:i') }}</p>
+
+						{% set difference = date(now).diff(date(book.borrowingDate)) %}
+						{% set leftDays = 21 - difference.days %}
+						{% if leftDays == 1 %}
+								<p class="borrowedBookInfo">Vous n'avez plus qu'un jour pour le rendre</p>
+						{% elseif leftDays > 0 %}
+								<p class="borrowedBookInfo">Vous avec encore {{ leftDays }} jours pour le rendre</p>
+						{% else %}
+								<p class="late">Merci de ramener ce livre au plus vite</p>
+						{% endif %}
+					</div>
 				</div>
-				<div class="col-7 p-3">
-					<h3>{{ book.title }}</h3>
-					<p>Parue le {{ book.releaseDate|date('m/d/Y') }}</p>
-					<p>{{ book.author }}</p>
-					<p>{{ book.genre }}</p>
-					<p class="borrowedBookInfo">Emprunté le {{ book.borrowingDate|date('d/m/Y à H:i') }}</p>
+				<div class="w-100 text-start p-4">
+					{{ book.description }}
 				</div>
-			</div>
-			<div class="w-100 text-start p-4">
-				{{ book.description }}
-			</div>
 
-			<hr class="my-4" />
+				<hr class="my-4" />
 
-		{% endfor %}
+			{% endfor %}
+		{% else %}
+			<p class="text-center mt-5">Vous n'avez emprunté aucun livre</p>
+		{% endif %}
 
 	</div>
 {% endblock %}

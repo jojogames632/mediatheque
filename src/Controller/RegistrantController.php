@@ -21,6 +21,8 @@ class RegistrantController extends AbstractController
      */
     public function index(Request $request, BookRepository $bookRepository): Response
     {
+        $this->updateBooksReservation($bookRepository);
+        
         $limit = 10;
         $page = (int)$request->query->get('page', 1);
 
@@ -49,16 +51,39 @@ class RegistrantController extends AbstractController
         ]);
     }
 
+    // Set available again all books reserved 3 days ago or more without someone coming to pick them up
+    public function updateBooksReservation(BookRepository $bookRepository)
+    {
+        $books = $bookRepository->getAllReservedBooks();
+        $now = new DateTime();
+        $threeDaysInSeconds = 3 * 24 * 60 * 60;
+
+        foreach ($books as $book) {
+            if ($now->getTimestamp() - $book->reservationDate->getTimestamp() > $threeDaysInSeconds) {
+                $book->setReservationDate(null);
+                $book->setHolder(null);
+                $book->setIsBorrowed(false);
+
+                $entitManager = $this->getDoctrine()->getManager();
+                $entitManager->persist($book);
+                $entitManager->flush();
+            }
+        }
+    }
+
     /**
      * @Route("/my-borrowed-books", name="my_borrowed_books")
      */
     public function getMyBorrowedBooks(BookRepository $bookRepository)
-    {
+    {   
+        $now = new DateTime();
+        
         $userId = $this->getUser()->getId();
         $borrowedBooks = $bookRepository->getBorrowedBooks($userId); 
         
         return $this->render('registrant/myBorrowedBooks.html.twig', [
-            'borrowedBooks' => $borrowedBooks
+            'borrowedBooks' => $borrowedBooks,
+            'now' => $now
         ]);
     }
 

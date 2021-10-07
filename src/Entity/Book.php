@@ -50,7 +50,7 @@ class Book
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $reservationDate;
+    public $reservationDate;
 
     /**
      * @ORM\Column(type="boolean")

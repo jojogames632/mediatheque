@@ -62,4 +62,12 @@ class BookRepository extends ServiceEntityRepository
         
         return $query->getQuery()->getResult();
     }
+
+    public function getAllReservedBooks() {
+        $query = $this->createQueryBuilder('b')
+            ->where('b.reservationDate IS NOT NULL')
+            ->andWhere('b.borrowingDate IS NULL');
+        
+        return $query->getQuery()->getResult();
+    }
 }

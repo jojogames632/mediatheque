@@ -10,5 +10,8 @@ h3 {
 
 .borrowedBookInfo {
 	color: #F58728;
-	font-size: 18px;
+}
+
+.late {
+	color: #ff2a00;
 }

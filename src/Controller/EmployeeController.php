@@ -21,12 +21,13 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class EmployeeController extends AbstractController
 {
-
     /**
      * @Route("", name="employee_home")
      */
     public function index(Request $request, BookRepository $bookRepository): Response
     {
+        $this->updateBooksReservation($bookRepository);
+
         $limit = 10;
         $page = (int)$request->query->get('page', 1);
 
@@ -53,6 +54,26 @@ class EmployeeController extends AbstractController
             'books' => $books,
             'user' => $user
         ]);
+    }
+
+    // Set available again all books reserved 3 days ago or more without someone coming to pick them up
+    public function updateBooksReservation(BookRepository $bookRepository)
+    {
+        $books = $bookRepository->getAllReservedBooks();
+        $now = new DateTime();
+        $threeDaysInSeconds = 3 * 24 * 60 * 60;
+
+        foreach ($books as $book) {
+            if ($now->getTimestamp() - $book->reservationDate->getTimestamp() > $threeDaysInSeconds) {
+                $book->setReservationDate(null);
+                $book->setHolder(null);
+                $book->setIsBorrowed(false);
+
+                $entitManager = $this->getDoctrine()->getManager();
+                $entitManager->persist($book);
+                $entitManager->flush();
+            }
+        }
     }
 
     /**
@@ -162,6 +183,8 @@ class EmployeeController extends AbstractController
      */
     public function getConfirmBorrowingList(BookRepository $bookRepository)
     {   
+        $this->updateBooksReservation($bookRepository);
+
         $books = $bookRepository->findBy([
             'isBorrowed' => true,
             'borrowingDate' => null

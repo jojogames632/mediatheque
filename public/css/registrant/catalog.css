@@ -22,3 +22,8 @@ h3 {
 	color: #F58728;
 	font-size: 18px;
 }
+
+main {
+	height: calc(100vh - 450px);
+	overflow: scroll;
+}
