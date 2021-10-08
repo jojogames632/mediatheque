@@ -16,7 +16,20 @@ li {
 	color: #C63840;
 }
 
-main {
-	background-color: #E9EAED;
-	height: calc(100vh - 80px);
+@media screen and (min-width: 800px) and (max-width: 1399px) {
+	form {
+		width: 45%;
+	}
+}
+
+@media screen and (min-width: 1400px) and (max-width: 2199px) {
+	form {
+		width: 40%;
+	}
+}
+
+@media screen and (min-width: 2200px) {
+	form {
+		width: 30%;
+	}
 }

@@ -57,25 +57,28 @@
 		</div>
 
 		{# main #}
-		<h1 class="text-center my-5">Valider les comptes</h1>
+		<main class="mainContainer">
+			<h1 class="text-center pt-5 mb-5">Valider les comptes</h1>
 
-		{% if unActiveUsers|length == 0 %}
-			<p class="text-center">Aucun compte à activer</p>
-		{% else %}
-			{% for user in unActiveUsers %}
-				<div class="row text-center row-cols-3">
-					<div class="col mt-2">{{ user.lastname }}</div>
-					<div class="col mt-2">{{ user.firstname }}</div>
-					<div class="col mt-2">{{ user.email }}</div>
-					<div class="col d-flex align-items-center justify-content-center mt-2">{{ user.address }}</div>
-					<div class="col d-flex align-items-center justify-content-center mt-2">{{ user.birthdate|date('d/m/Y') }}</div>
-					<div class="col d-flex align-items-center justify-content-center mt-2">
-						<a href="{{ path('validate_account', {id: user.id}) }}" class="btn btn-sm btn-warning">Activer</a>
+			{% if unActiveUsers|length == 0 %}
+				<p class="text-center">Aucun compte à activer</p>
+			{% else %}
+			<div class="accountsContainer m-auto">
+				{% for user in unActiveUsers %}
+					<div class="row text-center row-cols-3">
+						<div class="col mt-2">{{ user.lastname }}</div>
+						<div class="col mt-2">{{ user.firstname }}</div>
+						<div class="col mt-2">{{ user.email }}</div>
+						<div class="col d-flex align-items-center justify-content-center mt-2">{{ user.address }}</div>
+						<div class="col d-flex align-items-center justify-content-center mt-2">{{ user.birthdate|date('d/m/Y') }}</div>
+						<div class="col d-flex align-items-center justify-content-center mt-2">
+							<a href="{{ path('validate_account', {id: user.id}) }}" class="btn btn-sm btn-warning">Activer</a>
+						</div>
 					</div>
-				</div>
 
-				<hr class="my-4" />
-			{% endfor %}
-		{% endif %}
-
+					<hr class="my-4" />
+				{% endfor %}
+			</div>
+			{% endif %}
+		</main>
 {% endblock %}

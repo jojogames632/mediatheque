@@ -1,0 +1,17 @@
+@media screen and (min-width: 1000px) and (max-width: 1399px) {
+	.accountsContainer {
+		width: 70%;
+	}
+}
+
+@media screen and (min-width: 1400px) and (max-width: 2199px) {
+	.accountsContainer {
+		width: 55%;
+	}
+}
+
+@media screen and (min-width: 2200px) {
+	.accountsContainer {
+		width: 35%;
+	}
+}
