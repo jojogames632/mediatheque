@@ -8,6 +8,11 @@
 	font-size: 20px;
 }
 
+.bookDescription {
+	height: 150px;
+	overflow: scroll;
+}
+
 /* Responsive */
 
 .bookContainer {

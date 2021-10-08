@@ -28,6 +28,11 @@ main {
 	overflow: scroll;
 }
 
+.bookDescription {
+	height: 150px;
+	overflow: scroll;
+}
+
 /* override default knp paginator color */
 .pagination li a {
 	color: #FFC20C;

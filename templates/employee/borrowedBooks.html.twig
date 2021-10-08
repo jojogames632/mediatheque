@@ -57,42 +57,46 @@
 		</div>
 
 		{# main #}
-		<h1 class="text-center my-5">Emprunts en cours</h1>
+		<main class="mainContainer">
+			<h1 class="text-center pt-5 mb-5">Emprunts en cours</h1>
 
-		{% if books|length == 0 %}
-			<p class="text-center">Aucun livre emprunté</p>
-		{% else %}
-			{% for book in books %}
-				<div class="row text-center d-flex justify-content-center">
-					<div class="col-3 d-flex justify-content-center align-items-center">
-						<img src="{{ asset('uploads/' ~ book.pictureFilename) }}" alt="livre" class="bookImage">
-					</div>
-					<div class="col-7 p-3">
-						<h3>{{ book.title }}</h3>
-						<p>Parue le {{ book.releaseDate|date('m/d/Y') }}</p>
-						<p>{{ book.author }}</p>
-						<p>{{ book.genre }}</p>
-					</div>
-				</div>
-				<div class="w-100 text-start p-4">
-					{{ book.description }}
-				</div>
+			{% if books|length == 0 %}
+				<p class="text-center">Aucun livre emprunté</p>
+			{% else %}
+				<div class="row row-cols-1 row-cols-lg-2 bookArea">
+					{% for book in books %}
+						<div class="col bookContainer">
+							<div class="row text-center d-flex justify-content-center">
+								<div class="col-3 d-flex justify-content-center align-items-center">
+									<img src="{{ asset('uploads/' ~ book.pictureFilename) }}" alt="livre" class="bookImage">
+								</div>
+								<div class="col-7 p-3">
+									<h3>{{ book.title }}</h3>
+									<p>Parue le {{ book.releaseDate|date('m/d/Y') }}</p>
+									<p>{{ book.author }}</p>
+									<p>{{ book.genre }}</p>
+								</div>
+							</div>
+							<div class="w-100 text-start p-4 bookDescription">
+								{{ book.description }}
+							</div>
 
-				{# Holder infos #}
-				<h2 class="text-center mt-3 holderTitle">Emprunté le {{ book.borrowingDate|date('d/m/Y') }} par :</h2>
-				<div class="row row-cols-2">
-					<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.lastname }}</div>
-					<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.firstname }}</div>
-					<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.email }}</div>
-					<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.address }}</div>
-					<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.birthdate|date('d-m-Y') }}</div>
-					<div class="col mt-2 d-flex justify-content-center align-items-center">
-						<a href="{{ path('confirm_return', {id: book.id}) }}" class="btn btn-sm btn-warning">Confirmer le retour</a>
-					</div>
+							{# Holder infos #}
+							<h2 class="text-center mt-3 holderTitle">Emprunté le {{ book.borrowingDate|date('d/m/Y') }} par :</h2>
+							<div class="row row-cols-2">
+								<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.lastname }}</div>
+								<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.firstname }}</div>
+								<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.email }}</div>
+								<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.address }}</div>
+								<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.birthdate|date('d-m-Y') }}</div>
+								<div class="col mt-2 d-flex justify-content-center align-items-center">
+									<a href="{{ path('confirm_return', {id: book.id}) }}" class="btn btn-sm btn-warning">Confirmer le retour</a>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
 				</div>
-
-				<hr class="my-5" />	
-			{% endfor %}
-		{% endif %}
+			{% endif %}
+		</div>
 	
 {% endblock %}

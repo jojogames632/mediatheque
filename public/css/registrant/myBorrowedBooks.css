@@ -26,6 +26,12 @@ h3 {
 	width: 100%;
 	padding: 20px;
 }
+
+.bookDescription {
+	height: 150px;
+	overflow: scroll;
+}
+
 /* Responsive */
 
 @media screen and (min-width: 800px) and (max-width: 999px) {
