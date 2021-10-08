@@ -1,7 +1,7 @@
 const Genres = document.querySelectorAll('.genre');
 const paginationContainer = document.getElementById('paginationContainer');
-var searchInput = document.getElementById('searchInput');
-var currentGenre = '';
+let searchInput = document.getElementById('searchInput');
+let currentGenre = '';
 
 Genres.forEach((genre) => {
 	genre.addEventListener('click', () => {

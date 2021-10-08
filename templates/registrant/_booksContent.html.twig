@@ -1,31 +1,32 @@
-{% for book in books %}
-
-	<div class="row text-center d-flex justify-content-center">
-		<div class="col-3 d-flex justify-content-center align-items-center">
-			<img src="{{ asset('uploads/' ~ book.pictureFilename) }}" alt="livre" class="bookImage">
+<div class="row row-cols-1 row-cols-lg-2">
+	{% for book in books %}
+		<div class="col bookContainer">
+			<div class="row text-center d-flex justify-content-center">
+				<div class="col-3 d-flex justify-content-center align-items-center">
+					<img src="{{ asset('uploads/' ~ book.pictureFilename) }}" alt="livre" class="bookImage">
+				</div>
+				<div class="col-7 p-3">
+					<h3>{{ book.title }}</h3>
+					<p>Parue le {{ book.releaseDate|date('m/d/Y') }}</p>
+					<p>{{ book.author }}</p>
+					<p>{{ book.genre }}</p>
+					{% if book.holder == user %}
+						{% if book.borrowingDate %}
+							<p class="borrowedBookInfo">Emprunté le {{ book.borrowingDate|date('d/m/Y à H:i') }}</p>
+						{% else %}
+							<p class="borrowedBookInfo">Réservé le {{ book.reservationDate|date('d/m/Y à H:i') }}</p>
+						{% endif %}
+					{% elseif book.isBorrowed %}
+						<p class="borrowedBookInfo">Non disponible</p>
+					{% else %}
+						<a href="{{ path('borrow_book_registrant', {id: book.id}) }}" class="btn btn-sm btn-outline-warning">Emprunter</a>
+					{% endif %}
+				</div>
+			</div>
+			<div class="w-100 text-start p-4">
+				{{ book.description }}
+			</div>
 		</div>
-		<div class="col-7 p-3">
-			<h3>{{ book.title }}</h3>
-			<p>Parue le {{ book.releaseDate|date('m/d/Y') }}</p>
-			<p>{{ book.author }}</p>
-			<p>{{ book.genre }}</p>
-			{% if book.holder == user %}
-				{% if book.borrowingDate %}
-					<p class="borrowedBookInfo">Emprunté le {{ book.borrowingDate|date('d/m/Y à H:i') }}</p>
-				{% else %}
-					<p class="borrowedBookInfo">Réservé le {{ book.reservationDate|date('d/m/Y à H:i') }}</p>
-				{% endif %}
-			{% elseif book.isBorrowed %}
-				<p class="borrowedBookInfo">Non disponible</p>
-			{% else %}
-				<a href="{{ path('borrow_book_registrant', {id: book.id}) }}" class="btn btn-sm btn-outline-warning">Emprunter</a>
-			{% endif %}
-		</div>
-	</div>
-	<div class="w-100 text-start p-4">
-		{{ book.description }}
-	</div>
+	{% endfor %}
+</div>
 
-	<hr class="my-4" />
-
-{% endfor %}

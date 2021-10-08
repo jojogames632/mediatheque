@@ -2,6 +2,13 @@ body {
 	padding: 0;
 }
 
+.mainContainer {
+	background-color: #E9EAED;
+	height: calc(100vh - 80px);
+}
+
+/* Mobile ********************************************************************************/
+
 .mobileHeader {
 	background: linear-gradient(#304769, #0C1E37);
 	height: 80px;
@@ -10,11 +17,6 @@ body {
 /* 'Compte inscrit' or 'Compte employé' */
 .mobileProfilTitle {
 	font-size: 22px;
-	white-space: nowrap;
-}
-
-.desktopProfilTitle {
-	font-size: 26px;
 	white-space: nowrap;
 }
 
@@ -44,20 +46,30 @@ svg {
 	text-decoration: none; 
 }
 
+/* Desktop *******************************************************************************/
+
+.navLink {
+	font-size: 18px;
+	white-space: nowrap;
+	text-decoration: none;
+}
+
 #desktopProfil {
 	background: linear-gradient(#304769, #0C1E37);
-	height: 100vh;
-	position: relative;
+	height: 80px;
 }
 
-#activeLink {
-	color: #405880;
+.desktopProfilTitle {
+	font-size: 22px;
+	white-space: nowrap;
 }
 
-#logoutBtn {
-	position: absolute;
-	bottom: 10px;
-	max-width: 90%;
+.no-active {
+	color: white;
+}
+
+.no-active:hover {
+	color: #F5BB0A;
 }
 
 /* Responsive design *********************************************************************/
@@ -79,17 +91,6 @@ svg {
 	}
 	#mobileHeaderOff {
 		display: flex;
-	}
-}
-
-/* Adjust profil text size */
-@media screen and (max-width: 1300px) {
-	.desktopProfilTitle {
-		font-size: 25px;
-	}
-	#desktopProfil a {
-		font-size: 12px;
-		white-space: nowrap;
 	}
 }
 

@@ -31,7 +31,7 @@
 			<span class="text-white mobileProfilTitle ml-3">Compte inscrit</span>
 			<svg 
 				xmlns="http://www.w3.org/2000/svg" 
-				width="40" 
+				width="40"
 				height="40" 
 				fill="currentColor" 
 				class="bi bi-list text-white mr-3"
@@ -44,40 +44,44 @@
 		</div>
 
 		{# desktop navigation #}
-		<div class="row">
-			<div class="col-2 flex-column align-items-center" id="desktopProfil">
-				<span class="mb-5 text-white desktopProfilTitle mt-4">Compte inscrit</span>
-				<a href="#" class="w-100 btn btn-warning mb-2" id="activeLink">Découvrir le catalogue</a>
-				<a href="{{ path('my_borrowed_books') }}" class="w-100 btn btn-outline-warning text-white">Emprunts en cours</a>
-				<a href="{{ path('app_logout') }}" class="w-100 btn btn-outline-warning text-white" id="logoutBtn">Se déconnecter</a>
+		<div class="row justify-content-between" id="desktopProfil">
+			<div class="col-2 d-flex justify-content-center align-items-center">
+				<span class="text-white desktopProfilTitle">Compte inscrit</span>
+			</div>
+			<div class="col col-lg-5 col-xl-4 col-xxl-3 d-flex justify-content-between align-items-center">
+				<a href="#" class="text-warning navLink">Découvrir le catalogue</a>
+				<a href="{{ path('my_borrowed_books') }}" class="navLink no-active">Emprunts en cours</a>
+			</div>
+			<div class="col-2 d-flex justify-content-center align-items-center">
+				<a href="{{ path('app_logout') }}" class="text-white navLink">Se déconnecter</a>
 			</div>
 		</div>
 		
-		{# Search zone #}
-		<div class="w-100 d-flex justify-content-center mt-3">
-			<input type="search" class="mt-3 text-center" id="searchInput" placeholder="Rechercher par titre" />
+		<div class="mainContainer">
+			<div class="bookArea">
+				{# Search zone #}
+				<div class="w-100 d-flex justify-content-center">
+					<input type="search" class="mt-5 text-center" id="searchInput" placeholder="Rechercher par titre" />
+				</div>
+
+				{# Filter zone #}
+				<div class="row row-cols-2 row-cols-lg-6 text-center my-5">
+					<div class="col"><span class="genre">Développement personnel</span></div>
+					<div class="col"><span class="genre">Psychologie</span></div>
+					<div class="col"><span class="genre">Business</span></div>
+					<div class="col"><span class="genre">Spiritualité</span></div>
+					<div class="col"><span class="genre">Productivité</span></div>
+					<div class="col"><span class="genre">Alimentation</span></div>
+				</div>
+				
+				<main>
+					{% include 'registrant/_booksContent.html.twig' %}
+				</main>
+
+				<div class="d-flex justify-content-center mt-5" id="paginationContainer">
+					{{ knp_pagination_render(books, 'pagination.html.twig') }}
+				</div>
+			</div>
 		</div>
-
-		{# Filter zone #}
-		<div class="row row-cols-2 text-center mt-5">
-			<div class="col"><span class="genre">Développement personnel</span></div>
-			<div class="col"><span class="genre">Psychologie</span></div>
-			<div class="col"><span class="genre">Business</span></div>
-			<div class="col"><span class="genre">Spiritualité</span></div>
-			<div class="col"><span class="genre">Productivité</span></div>
-			<div class="col"><span class="genre">Alimentation</span></div>
-		</div>
-
-		<hr class="mt-4 mb-5" />
-
-		{# Main #}
-		<main>
-			{% include 'registrant/_booksContent.html.twig' %}
-		</main>
-
-		<div class="d-flex justify-content-center mt-5" id="paginationContainer">
-			{{ knp_pagination_render(books, 'pagination.html.twig') }}
-		</div>
-
 	</div>
 {% endblock %}

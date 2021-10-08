@@ -40,15 +40,19 @@
 		</div>
 
 		{# desktop navigation #}
-		<div class="row">
-			<div class="col-2 flex-column align-items-center" id="desktopProfil">
-				<span class="mb-5 text-white desktopProfilTitle mt-4">Compte employé</span>
-				<a href="{{ path('employee_home') }}" class="w-100 btn btn-outline-warning mb-2">Découvrir le catalogue</a>
-				<a href="{{ path('validate_accounts_list') }}" class="w-100 btn btn-outline-warning mb-2">Valider les comptes</a>
-				<a href="#" class="w-100 btn btn-warning mb-2" id="activeLink">Ajouter un livre</a>
-				<a href="{{ path('confirm_borrowing_list') }}" class="w-100 btn btn-outline-warning mb-2">Confirmer un emprunt</a>
-				<a href="{{ path('borrowed_books_list') }}" class="w-100 btn btn-outline-warning mb-2">Emprunts en cours</a>
-				<a href="{{ path('app_logout') }}" class="w-100 btn btn-outline-warning" id="logoutBtn">Se déconnecter</a>
+		<div class="row justify-content-between" id="desktopProfil">
+			<div class="col-2 d-flex justify-content-center align-items-center">
+				<span class="text-white desktopProfilTitle">Compte employé</span>
+			</div>
+			<div class="col col-lg-8 col-xxl-7 d-flex justify-content-between align-items-center">
+				<a href="{{ path('employee_home') }}" class="navLink no-active">Découvrir le catalogue</a>
+				<a href="{{ path('validate_accounts_list') }}" class="navLink no-active">Valider les comptes</a>
+				<a href="#" class="text-warning navLink">Ajouter un livre</a>
+				<a href="{{ path('confirm_borrowing_list') }}" class="navLink no-active">Confirmer un emprunt</a>
+				<a href="{{ path('borrowed_books_list') }}" class="navLink no-active">Emprunts en cours</a>
+			</div>
+			<div class="col-2 d-flex justify-content-center align-items-center">
+				<a href="{{ path('app_logout') }}" class="text-white navLink">Se déconnecter</a>
 			</div>
 		</div>
 

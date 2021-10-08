@@ -1,4 +1,4 @@
-var toggleStatus = 0;
+let toggleStatus = 0;
 
 // Switch mobile header
 function toggleHeader() {

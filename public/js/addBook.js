@@ -1,6 +1,6 @@
 let burgerBtn = document.getElementById('burgerBtn');
 burgerBtn.addEventListener('click', () => {
-	var alertDiv = document.querySelector('.alert');
+	let alertDiv = document.querySelector('.alert');
 	if (alertDiv !== null) {
 		alertDiv.remove();
 	}
