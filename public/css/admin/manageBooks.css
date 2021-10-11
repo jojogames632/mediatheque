@@ -1,0 +1,16 @@
+.tableContainer {
+	height: calc(100vh - 350px);
+	overflow-y: scroll;
+}
+
+.bookDescription {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 300px;
+	max-height: 200px;
+}
+
+td {
+	height: 100px;
+}

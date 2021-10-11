@@ -58,6 +58,9 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
             else if (in_array('ROLE_EMPLOYEE', $token->getRoleNames())) {
                 return new RedirectResponse($this->urlGenerator->generate('employee_home'));
             }
+            else if (in_array('ROLE_ADMIN', $token->getRoleNames())) {
+                return new RedirectResponse($this->urlGenerator->generate('admin_home'));
+            }
 
         }
         else {

@@ -1,0 +1,59 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Créer un livre{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/admin/bookForm.css') }}" /> 
+{% endblock %}
+
+{% block body %}
+
+    {# mobile navigation (toggle on) #}
+	<div class="w-100 p-3 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
+		<span class="text-white mobileProfilTitle ml-3">Compte administrateur</span>
+		<span class="text-white closeBtn mr-3" onClick="toggleHeader()">X</span>
+		<div class="d-flex flex-column justify-content-center align-items-center navContainer">
+			<a href="#" class="text-warning mb-5">Gérer les livres</a>
+			<a href="{{ path('manage_users') }}" class="text-white mb-5">Gérer les utilisateurs</a>
+			<a href="{{ path('app_logout') }}" class="text-white mt-5">Se déconnecter</a>
+		</div>
+	</div>
+
+	{# mobile navigation (toggle off) #}
+	<div class="w-100 p-3 justify-content-between align-items-center mobileHeader" id="mobileHeaderOff">
+		<span class="text-white mobileProfilTitle ml-3">Compte administrateur</span>
+		<svg 
+			xmlns="http://www.w3.org/2000/svg" 
+			width="40" 
+			height="40" 
+			fill="currentColor" 
+			class="bi bi-list text-white mr-3"
+			id="burgerBtn" 
+			viewBox="0 0 16 16"
+			onClick="toggleHeader()"
+		>
+			<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+		</svg>
+	</div>
+
+	{# desktop navigation #}
+	<div class="row justify-content-between" id="desktopProfil">
+		<div class="col-3 d-flex justify-content-center align-items-center">
+			<span class="text-white desktopProfilTitle">Compte administrateur</span>
+		</div>
+		<div class="col col-lg-4 col-xxl-3 d-flex justify-content-between align-items-center">
+			<a href="#" class="text-warning navLink">Gérer les livres</a>
+			<a href="{{ path('manage_users') }}" class="navLink no-active">Gérer les utilisateurs</a>
+		</div>
+		<div class="col-2 d-flex justify-content-center align-items-center">
+			<a href="{{ path('app_logout') }}" class="text-white navLink">Se déconnecter</a>
+		</div>
+	</div>
+    
+    <main class="mainContainer">
+        <h1 class="text-center pt-5 mb-4">Créer un livre</h1>
+
+        {{ include('admin/_form.html.twig') }}
+    </main>
+    
+{% endblock %}

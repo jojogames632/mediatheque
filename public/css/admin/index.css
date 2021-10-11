@@ -49,7 +49,7 @@ svg {
 /* Desktop ********************************************************************************/
 
 .navLink {
-	font-size: 14px;
+	font-size: 18px;
 	white-space: nowrap;
 	text-decoration: none;
 }
@@ -64,39 +64,39 @@ svg {
 	height: 80px;
 }
 
-	.no-active {
-		color: white;
-	}
+.no-active {
+	color: white;
+}
 
-	.no-active:hover {
-		color: #F5BB0A;
-	}
+.no-active:hover {
+	color: #F5BB0A;
+}
 
-	/* Responsive design *********************************************************************/
+/* Responsive design *********************************************************************/
 
-	/* [for desktop] show desktop profil & hide mobile profil */
-	@media screen and (min-width: 1000px) {
-		#desktopProfil {
-			display: flex;
-		}
-		#mobileHeaderOff {
-			display: none !important; /* keep mobile header hidden when on desktop*/
-		}
+/* [for desktop] show desktop profil & hide mobile profil */
+@media screen and (min-width: 1000px) {
+	#desktopProfil {
+		display: flex;
 	}
+	#mobileHeaderOff {
+		display: none !important; /* keep mobile header hidden when on desktop*/
+	}
+}
 
-	/* [for mobiles] show mobile profil & hide desktop profil */
-	@media screen and (max-width: 999px) {
-		#desktopProfil {
-			display: none;
-		}
-		#mobileHeaderOff {
-			display: flex;
-		}
+/* [for mobiles] show mobile profil & hide desktop profil */
+@media screen and (max-width: 999px) {
+	#desktopProfil {
+		display: none;
 	}
+	#mobileHeaderOff {
+		display: flex;
+	}
+}
 
-	@media screen and (min-width: 1400px) {
-		.navLink {
-			font-size: 18px;
-		}
+@media screen and (min-width: 1400px) {
+	.navLink {
+		font-size: 18px;
 	}
+}
 

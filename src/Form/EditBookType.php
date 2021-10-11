@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Book;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,8 +16,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
+use App\Entity\User;
 
-class BookType extends AbstractType
+class EditBookType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -29,8 +33,8 @@ class BookType extends AbstractType
                 ]
             ])
             ->add('pictureFilename', FileType::class, [
-                'mapped' => false,
-                'required' => true,
+				'mapped' => false,
+				'required' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '1024K',
@@ -75,7 +79,21 @@ class BookType extends AbstractType
                     'Productivité' => 'Productivité',
                     'Alimentation' => 'Alimentation'
                 ]
-            ])
+			])
+            ->add('holder', EntityType::class, [
+                'required' => false,
+                'class' => User::class,
+                'choice_label' => 'email'
+			])
+			->add('reservationDate', DateTimeType::class, [
+				'required' => false
+			])
+			->add('borrowingDate', DateTimeType::class, [
+				'required' => false
+			])
+			->add('isBorrowed', CheckboxType::class, [
+				'required' => false
+			])
         ;
     }
 

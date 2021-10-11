@@ -37,3 +37,4 @@ security:
     access_control:
         - { path: ^/registrant, roles: ROLE_REGISTRANT }
         - { path: ^/employee, roles: ROLE_EMPLOYEE }
+        - { path: ^/admin, roles: ROLE_ADMIN }

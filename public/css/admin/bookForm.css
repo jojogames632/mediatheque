@@ -1,0 +1,35 @@
+form {
+	width: 75vw;
+	margin: auto;
+}
+
+input,
+select {
+	margin-bottom: 10px;
+}
+
+li {
+	color: #f56528;
+}
+
+label {
+	margin-top: 5px;
+}
+
+@media screen and (min-width: 1000px) {
+	form {
+		width: 50vw;
+	}
+}
+
+@media screen and (min-width: 1500px) {
+	form {
+		width: 40vw;
+	}
+}
+
+@media screen and (min-width: 2000px) {
+	form {
+		width: 30vw;
+	}
+}
