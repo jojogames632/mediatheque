@@ -3,11 +3,6 @@
         'class' : 'd-flex flex-column'
     }
 }) }}
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success" role="alert">
-            {{ message }}
-        </div>
-    {% endfor %}
 
     {{ form_label(form.title, 'Titre') }}
     {{ form_widget(form.title) }}

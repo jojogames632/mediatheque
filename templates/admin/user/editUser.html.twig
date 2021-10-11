@@ -1,20 +1,20 @@
 {% extends 'admin/index.html.twig' %}
 
-{% block title %}Créer un livre{% endblock %}
+{% block title %}Modifier un utilisateur{% endblock %}
 {% block stylesheets %}
 	{{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/admin/bookForm.css') }}" /> 
+    <link rel="stylesheet" href="{{ asset('css/admin/form.css') }}" /> 
 {% endblock %}
 
 {% block body %}
 
-    {# mobile navigation (toggle on) #}
+	{# mobile navigation (toggle on) #}
 	<div class="w-100 p-3 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
 		<span class="text-white mobileProfilTitle ml-3">Compte administrateur</span>
 		<span class="text-white closeBtn mr-3" onClick="toggleHeader()">X</span>
 		<div class="d-flex flex-column justify-content-center align-items-center navContainer">
-			<a href="#" class="text-warning mb-5">Gérer les livres</a>
-			<a href="{{ path('manage_users') }}" class="text-white mb-5">Gérer les utilisateurs</a>
+			<a href="{{ path('admin_home') }}" class="text-white mb-5">Gérer les livres</a>
+			<a href="{{ path('manage_users') }}" class="text-warning mb-5">Gérer les utilisateurs</a>
 			<a href="{{ path('app_logout') }}" class="text-white mt-5">Se déconnecter</a>
 		</div>
 	</div>
@@ -42,18 +42,17 @@
 			<span class="text-white desktopProfilTitle">Compte administrateur</span>
 		</div>
 		<div class="col col-lg-4 col-xxl-3 d-flex justify-content-between align-items-center">
-			<a href="#" class="text-warning navLink">Gérer les livres</a>
-			<a href="{{ path('manage_users') }}" class="navLink no-active">Gérer les utilisateurs</a>
+			<a href="{{ path('admin_home') }}" class="text-white navLink no-active">Gérer les livres</a>
+			<a href="{{ path('manage_users') }}" class="navLink text-warning">Gérer les utilisateurs</a>
 		</div>
 		<div class="col-2 d-flex justify-content-center align-items-center">
 			<a href="{{ path('app_logout') }}" class="text-white navLink">Se déconnecter</a>
 		</div>
 	</div>
-    
-    <main class="mainContainer">
-        <h1 class="text-center pt-5 mb-4">Créer un livre</h1>
 
-        {{ include('admin/_form.html.twig') }}
-    </main>
-    
+	<main class="mainContainer">
+		<h1 class="text-center pt-5 mb-4">Gérer les utilisateurs</h1>
+
+		{{ include('admin/user/_userForm.html.twig') }}
+	</main>
 {% endblock %}

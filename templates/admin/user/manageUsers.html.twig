@@ -1,0 +1,116 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Gérer les utilisateurs{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/admin/manageUsers.css') }}" /> 
+{% endblock %}
+
+{% block body %}
+
+	{# mobile navigation (toggle on) #}
+	<div class="w-100 p-3 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
+		<span class="text-white mobileProfilTitle ml-3">Compte administrateur</span>
+		<span class="text-white closeBtn mr-3" onClick="toggleHeader()">X</span>
+		<div class="d-flex flex-column justify-content-center align-items-center navContainer">
+			<a href="{{ path('admin_home') }}" class="text-white mb-5">Gérer les livres</a>
+			<a href="{{ path('manage_users') }}" class="text-warning mb-5">Gérer les utilisateurs</a>
+			<a href="{{ path('app_logout') }}" class="text-white mt-5">Se déconnecter</a>
+		</div>
+	</div>
+
+	{# mobile navigation (toggle off) #}
+	<div class="w-100 p-3 justify-content-between align-items-center mobileHeader" id="mobileHeaderOff">
+		<span class="text-white mobileProfilTitle ml-3">Compte administrateur</span>
+		<svg 
+			xmlns="http://www.w3.org/2000/svg" 
+			width="40" 
+			height="40" 
+			fill="currentColor" 
+			class="bi bi-list text-white mr-3"
+			id="burgerBtn" 
+			viewBox="0 0 16 16"
+			onClick="toggleHeader()"
+		>
+			<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+		</svg>
+	</div>
+
+	{# desktop navigation #}
+	<div class="row justify-content-between" id="desktopProfil">
+		<div class="col-3 d-flex justify-content-center align-items-center">
+			<span class="text-white desktopProfilTitle">Compte administrateur</span>
+		</div>
+		<div class="col col-lg-4 col-xxl-3 d-flex justify-content-between align-items-center">
+			<a href="{{ path('admin_home') }}" class="text-white navLink no-active">Gérer les livres</a>
+			<a href="{{ path('manage_users') }}" class="navLink text-warning">Gérer les utilisateurs</a>
+		</div>
+		<div class="col-2 d-flex justify-content-center align-items-center">
+			<a href="{{ path('app_logout') }}" class="text-white navLink">Se déconnecter</a>
+		</div>
+	</div>
+
+	<main class="mainContainer">
+		<h1 class="text-center pt-5 mb-4">Gérer les utilisateurs</h1>
+
+		<div class="tableContainer p-5">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Email</th>
+						<th>Role</th>
+						<th>Activé?</th>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Date de naissance</th>
+						<th>Adresse</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for user in users %}
+					<tr>
+						<td>{{ user.id }}</td>
+						<td>{{ user.email }}</td>
+						<td>
+							<ul class="list-unstyled">
+								{% for role in user.roles %}
+									<li>{{ role }}</li>
+								{% endfor %}
+							</ul>
+						</td>
+						<td>{{ user.isActive ? 'Oui' : 'Non' }}</td>
+						<td>{{ user.lastname }}</td>
+						<td>{{ user.firstname }}</td>
+						<td>{{ user.birthdate|date('d-m-Y') }}</td>
+						<td>{{ user.address }}</td>
+						<td>
+							<div class="d-flex justify-content-between align-items-center">
+								<a href="{{ path('edit_user', {'id': user.id}) }}">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill text-warning" viewBox="0 0 16 16">
+										<path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+									</svg>
+								</a>
+								{% if user != myAdminAccount %}
+									<a href="{{ path('delete_user', {'id': user.id}) }}">
+										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-octagon-fill text-danger" viewBox="0 0 16 16">
+											<path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+										</svg>
+									</a>
+								{% endif %}
+							</div>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="11">Aucun utilisateur en base de données</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+	</main>
+
+{% endblock %}

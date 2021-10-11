@@ -1,0 +1,35 @@
+{{ form_start(form, {
+    'attr' : {
+        'class' : 'd-flex flex-column'
+    }
+}) }}
+
+    {{ form_label(form.email) }}
+    {{ form_widget(form.email) }}
+    {{ form_errors(form.email) }}
+
+    {{ form_row(form.isActive, {
+		'label' : 'Activé?'
+	}) }}
+ 
+	{{ form_label(form.lastname, 'Nom') }}
+    {{ form_widget(form.lastname) }}
+    {{ form_errors(form.lastname) }}
+
+	{{ form_label(form.firstname, 'Prénom') }}
+    {{ form_widget(form.firstname) }}
+    {{ form_errors(form.firstname) }}
+
+	{{ form_label(form.birthdate, 'Date de naissance') }}
+    {{ form_widget(form.birthdate) }}
+    {{ form_errors(form.birthdate) }}
+
+	{{ form_label(form.address, 'Adresse') }}
+    {{ form_widget(form.address) }}
+    {{ form_errors(form.address) }}
+
+    <p class="d-flex justify-content-around mt-4">
+        <a href="{{ path('manage_users') }}" class="btn btn-outline-warning">Annuler</a>
+        <button type="submit" class="btn btn-outline-warning">Valider</button>
+    </p>
+{{ form_end(form) }}
