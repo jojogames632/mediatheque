@@ -4,7 +4,7 @@ body {
 
 .mainContainer {
 	background-color: #E9EAED;
-	height: calc(100vh - 80px);
+	height: calc(100vh - 80px - 60px);
 }
 
 /* Mobile ********************************************************************************/

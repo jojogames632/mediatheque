@@ -19,6 +19,7 @@
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 	width: 100%;
 	padding: 30px;
+	max-height: 62%;
 }
 
 .bookArea {
@@ -29,7 +30,8 @@
 @media screen and (min-width: 800px) and (max-width: 999px) {
 	.bookContainer {
 		width: 75%;
-		margin: auto;
+		margin-right: auto;
+		margin-left: auto;
 		margin-bottom: 30px;
 		border-radius: 20px;
 	}
