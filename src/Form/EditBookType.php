@@ -91,7 +91,9 @@ class EditBookType extends AbstractType
 			->add('borrowingDate', DateTimeType::class, [
 				'required' => false
 			])
-			->add('isBorrowed', CheckboxType::class)
+			->add('isBorrowed', CheckboxType::class, [
+                'required' => false
+            ])
         ;
     }
 
