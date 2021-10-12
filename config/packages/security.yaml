@@ -38,3 +38,7 @@ security:
         - { path: ^/registrant, roles: ROLE_REGISTRANT }
         - { path: ^/employee, roles: ROLE_EMPLOYEE }
         - { path: ^/admin, roles: ROLE_ADMIN }
+
+    role_hierarchy:
+        ROLE_EMPLOYEE: ROLE_REGISTRANT
+        ROLE_ADMIN: ROLE_EMPLOYEE
