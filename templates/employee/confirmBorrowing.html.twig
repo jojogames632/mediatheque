@@ -84,12 +84,12 @@
 							{# Holder infos #}
 							<h2 class="text-center mt-3 holderTitle">Réservé le {{ book.reservationDate|date('d/m/Y') }} par :</h2>
 							<div class="row row-cols-2">
-								<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.lastname }}</div>
-								<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.firstname }}</div>
-								<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.email }}</div>
-								<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.address }}</div>
-								<div class="col mt-2 d-flex justify-content-center align-items-center">{{ book.holder.birthdate|date('d-m-Y') }}</div>
-								<div class="col mt-2 d-flex justify-content-center align-items-center">
+								<div class="col mt-3 d-flex justify-content-center align-items-center">{{ book.holder.lastname }}</div>
+								<div class="col mt-3 d-flex justify-content-center align-items-center">{{ book.holder.firstname }}</div>
+								<div class="col mt-3 d-flex justify-content-center align-items-center">{{ book.holder.email }}</div>
+								<div class="col mt-3 d-flex justify-content-center align-items-center">{{ book.holder.address }}</div>
+								<div class="col mt-3 d-flex justify-content-center align-items-center">{{ book.holder.birthdate|date('d-m-Y') }}</div>
+								<div class="col mt-3 d-flex justify-content-center align-items-center">
 									<a href="{{ path('confirm_borrowing', {id: book.id}) }}" class="btn btn-sm btn-warning">Confirmer l'emprunt</a>
 								</div>
 							</div>
