@@ -1,6 +1,7 @@
 {% extends "registrant/index.html.twig" %}
 
 {% block title %}Catalogue{% endblock %}
+{% block metaDescription %}Découvrez le catalogue de livres. Faites une recherche par titre ou trier par catégorie de livre{% endblock %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -79,7 +80,7 @@
 				</section>
 
 				<div class="d-flex justify-content-center mt-5" id="paginationContainer">
-					{{ knp_pagination_render(books, 'pagination.html.twig') }}
+					{{ knp_pagination_render(books, '_pagination.html.twig') }}
 				</div>
 			</div>
 		</main>

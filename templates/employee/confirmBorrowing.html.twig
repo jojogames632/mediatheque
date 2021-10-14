@@ -1,6 +1,8 @@
 {% extends "employee/index.html.twig" %}
 
 {% block title %}Confirmer un emprunt{% endblock %}
+{% block metaDescription %}Lorsque un inscrit vient emprunter un livre à la médiathèque il est nécessaire de valider cette action sur l'application{% endblock %}
+
 {% block stylesheets %}
 		{{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/employee/confirmBorrowing.css') }}" />

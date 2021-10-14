@@ -1,6 +1,8 @@
 {% extends 'admin/index.html.twig' %}
 
 {% block title %}Gérer les livres{% endblock %}
+{% block metaDescription %}Consulter, modifier ou supprimer les livres de l'application{% endblock %}
+
 {% block stylesheets %}
 	{{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/admin/manageBooks.css') }}" /> 

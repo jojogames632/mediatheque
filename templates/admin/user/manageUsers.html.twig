@@ -1,6 +1,8 @@
 {% extends 'admin/index.html.twig' %}
 
 {% block title %}Gérer les utilisateurs{% endblock %}
+{% block metaDescription %}Consulter, modifier ou supprimer les utilisateurs de l'application{% endblock %}
+
 {% block stylesheets %}
 	{{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/admin/manageUsers.css') }}" /> 

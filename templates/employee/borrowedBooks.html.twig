@@ -1,6 +1,8 @@
 {% extends "employee/index.html.twig" %}
 
 {% block title %}Liste des emprunts{% endblock %}
+{% block metaDescription %}Consulter la liste de tous les livres empruntés triés du plus ancien au plus récent{% endblock %}
+
 {% block stylesheets %}
 		{{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/employee/borrowedBooks.css') }}" />

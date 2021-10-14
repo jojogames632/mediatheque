@@ -1,6 +1,8 @@
 {% extends 'admin/index.html.twig' %}
 
 {% block title %}Modifier un utilisateur{% endblock %}
+{% block metaDescription %}Modifier les informations d'un utilisateur comme son email, son nom ou son prénom{% endblock %}
+
 {% block stylesheets %}
 	{{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/admin/form.css') }}" /> 
