@@ -55,18 +55,22 @@ span {
 /* low height screens */
 @media screen and (min-height: 650px) and (max-height: 849px) {
 	h1 {
-		font-size: 20px;
-		margin-bottom: 20px;
+		font-size: 15px;
+		margin-bottom: 10px;
 	}
 	form {
-		height: 87vh;
+		height: 80vh;
 	}
 	input {
-		height: 20px;
+		height: 15px;
 	}
 	span {
 		font-size: 12px;
 	}
+	.registerBtn {
+		font-size: 12px;
+	}
+	
 }
 
 /* medium height screens */

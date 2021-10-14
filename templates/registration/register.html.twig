@@ -40,8 +40,8 @@
         {{ form_errors(registrationForm.plainPassword.second) }}
 
         <div class="d-flex justify-content-around">
-            <a href="{{ path('app_login') }}" class="btn btn-outline-warning">Annuler</a>
-            <button type="submit" class="btn btn-outline-warning">Créer</button>
+            <a href="{{ path('app_login') }}" class="btn btn-outline-warning registerBtn">Annuler</a>
+            <button type="submit" class="btn btn-outline-warning registerBtn">Créer</button>
         </div>
     {{ form_end(registrationForm) }}
 {% endblock %}
