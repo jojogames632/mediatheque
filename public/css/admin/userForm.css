@@ -16,6 +16,16 @@ label {
 	margin-top: 5px;
 }
 
+/* Responsive to show form button at the bottom of the page */
+
+@media screen and (max-height: 680px) {
+	body {
+		height: 105vh;
+	}
+}
+
+/* Responsive for design */
+
 @media screen and (min-width: 1000px) {
 	form {
 		width: 50vw;

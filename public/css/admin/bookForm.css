@@ -1,0 +1,63 @@
+form {
+	width: 75vw;
+	margin: auto;
+}
+
+input,
+select {
+	margin-bottom: 10px;
+}
+
+li {
+	color: #f56528;
+}
+
+label {
+	margin-top: 5px;
+}
+
+/* Responsive to show form button at the bottom of the page */
+
+@media screen and (max-height: 680px) {
+	body {
+		height: 185vh;
+	}
+}
+
+@media screen and (min-height: 681px) and (max-height: 800px) {
+	body {
+		height: 170vh;
+	}
+}
+
+@media screen and (min-height: 801px) and (max-height: 999px) {
+	body {
+		height: 155vh;
+	}
+}
+
+@media screen and (min-height: 1000px) and (max-height: 1199px) {
+	body {
+		height: 120vh;
+	}
+}
+
+/* Responsive for design */
+
+@media screen and (min-width: 1000px) {
+	form {
+		width: 50vw;
+	}
+}
+
+@media screen and (min-width: 1500px) {
+	form {
+		width: 40vw;
+	}
+}
+
+@media screen and (min-width: 2000px) {
+	form {
+		width: 30vw;
+	}
+}

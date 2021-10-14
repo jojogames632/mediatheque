@@ -27,6 +27,16 @@
 	overflow: scroll;
 }
 
+/* Responsive design (height) */
+
+@media screen and (max-height: 1200px) {
+	.bookContainer {
+		max-height: 200%;
+	}
+}
+
+/* Responsive design (width) */
+
 @media screen and (min-width: 800px) and (max-width: 999px) {
 	.bookContainer {
 		width: 75%;

@@ -1,3 +1,10 @@
+@media screen and (max-width: 999px) {
+	.accountsContainer {
+		width: 100%;
+		overflow-x: scroll;
+	}
+}
+
 @media screen and (min-width: 1000px) and (max-width: 1399px) {
 	.accountsContainer {
 		width: 70%;
