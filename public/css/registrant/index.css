@@ -1,9 +1,9 @@
 body {
 	padding: 0;
+	background-color: #E9EAED;
 }
 
 .mainContainer {
-	background-color: #E9EAED;
 	height: calc(100vh - 80px - 60px);
 }
 
