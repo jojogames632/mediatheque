@@ -33,12 +33,6 @@ class RegistrationFormType extends AbstractType
                 'format' => 'dd MM yyy'
             ])
             ->add('address', TextType::class, [
-                'constraints' => [
-                    new Length([
-                        'min' => 10,
-                        'minMessage' => 'L\'adresse doit contenir au moins {{ limit }} caractères',
-                    ])
-                ],
                 'required' => true
             ])
             ->add('plainPassword', RepeatedType::class, [

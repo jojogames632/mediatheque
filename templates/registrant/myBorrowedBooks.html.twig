@@ -11,18 +11,18 @@
 	<div class="container-fluid p-0">
 
 		{# mobile navigation (toggle on) #}
-		<div class="w-100 p-3 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
+		<header class="w-100 p-3 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
 			<span class="text-white mobileProfilTitle ml-3">Compte inscrit</span>
 			<span class="text-white closeBtn mr-3" onClick="toggleHeader()">X</span>
-			<div class="d-flex flex-column justify-content-center align-items-center navContainer">
+			<nav class="d-flex flex-column justify-content-center align-items-center navContainer">
 				<a href="{{ path('registrant_home') }}" class="text-white mb-5">Découvrir le catalogue</a>
 				<a href="#" class="text-warning">Emprunts en cours</a>
 				<a href="{{ path('app_logout') }}" class="text-white mt-5">Se déconnecter</a>
-			</div>
-		</div>
+			</nav>
+		</header>
 
 		{# mobile navigation (toggle off) #}
-		<div class="w-100 p-3 justify-content-between align-items-center mobileHeader" id="mobileHeaderOff">
+		<header class="w-100 p-3 justify-content-between align-items-center mobileHeader" id="mobileHeaderOff">
 			<span class="text-white mobileProfilTitle ml-3">Compte inscrit</span>
 			<svg 
 				xmlns="http://www.w3.org/2000/svg" 
@@ -36,25 +36,25 @@
 			>
 				<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
 			</svg>
-		</div>
+		</header>
 
 		{# desktop navigation #}
-		<div class="row justify-content-between" id="desktopProfil">
+		<header class="row justify-content-between" id="desktopProfil">
 			<div class="col-2 d-flex justify-content-center align-items-center">
 				<span class="text-white desktopProfilTitle">Compte inscrit</span>
 			</div>
-			<div class="col col-lg-5 col-xl-4 col-xxl-3 d-flex justify-content-between align-items-center">
+			<nav class="col col-lg-5 col-xl-4 col-xxl-3 d-flex justify-content-between align-items-center">
 				<a href="{{ path('registrant_home') }}" class="navLink no-active">Découvrir le catalogue</a>
 				<a href="#" class="text-warning navLink">Emprunts en cours</a>
-			</div>
+			</nav>
 			<div class="col-2 d-flex justify-content-center align-items-center">
 				<a href="{{ path('app_logout') }}" class="text-white navLink">Se déconnecter</a>
 			</div>
-		</div>
+		</header>
 		
 		{# Main #}
-		<div class="mainContainer">
-			<div class="w-100 bg-warning p-3">
+		<main class="mainContainer">
+			<section class="w-100 bg-warning p-3">
 				<div class="d-flex align-items-center justify-content-center">
 					<div class="row d-flex align-items-center">
 						<div class="col-2">
@@ -75,8 +75,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="bookArea mt-4">
+			</section>
+			<section class="bookArea mt-4">
 				<div class="row row-cols-1 row-cols-xl-2 d-flex justify-content-center">
 					{% if borrowedBooks|length > 0 %}
 						{% for book in borrowedBooks %}
@@ -112,8 +112,8 @@
 						<p class="text-center mt-5">Vous n'avez emprunté aucun livre</p>
 					{% endif %}
 				</div>
-			</div>
-		</div>
+			</section>
+		</main>
 
 	</div>
 {% endblock %}

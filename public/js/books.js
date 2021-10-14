@@ -1,6 +1,7 @@
 const Genres = document.querySelectorAll('.genre');
 const paginationContainer = document.getElementById('paginationContainer');
-let searchInput = document.getElementById('searchInput');
+const bookSection = document.querySelector('#bookSection');
+const searchInput = document.getElementById('searchInput');
 let currentGenre = '';
 
 Genres.forEach((genre) => {
@@ -35,8 +36,7 @@ Genres.forEach((genre) => {
 		}).then(response => 
 			response.json()
 		).then(data => {
-			const content = document.querySelector('main')
-			content.innerHTML = data.content;
+			bookSection.innerHTML = data.content;
 		}).catch(e => alert(e));
 	});
 });
@@ -64,8 +64,7 @@ searchInput.addEventListener('input', (event) => {
 		}).then(response => 
 			response.json()
 		).then(data => {
-			const content = document.querySelector('main')
-			content.innerHTML = data.content;
+			bookSection.innerHTML = data.content;
 		}).catch(e => alert(e));
 	}
 	else {
@@ -77,8 +76,7 @@ searchInput.addEventListener('input', (event) => {
 		}).then(response => 
 			response.json()
 		).then(data => {
-			const content = document.querySelector('main')
-			content.innerHTML = data.content;
+			bookSection.innerHTML = data.content;
 		}).catch(e => alert(e));
 	}
 })

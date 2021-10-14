@@ -16,18 +16,18 @@
 	<div class="container-fluid p-0">
 
 		{# mobile navigation (toggle on) #}
-		<div class="w-100 p-3 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
+		<header class="w-100 p-3 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
 			<span class="text-white mobileProfilTitle ml-3">Compte inscrit</span>
 			<span class="text-white closeBtn mr-3" onClick="toggleHeader()">X</span>
-			<div class="d-flex flex-column justify-content-center align-items-center navContainer">
+			<nav class="d-flex flex-column justify-content-center align-items-center navContainer">
 				<a href="#" class="text-warning mb-5">Découvrir le catalogue</a>
 				<a href="{{ path('my_borrowed_books') }}" class="text-white">Emprunts en cours</a>
 				<a href="{{ path('app_logout') }}" class="text-white mt-5">Se déconnecter</a>
-			</div>
-		</div>
+			</nav>
+		</header>
 
 		{# mobile navigation (toggle off) #}
-		<div class="w-100 p-3 justify-content-between align-items-center mobileHeader" id="mobileHeaderOff">
+		<header class="w-100 p-3 justify-content-between align-items-center mobileHeader" id="mobileHeaderOff">
 			<span class="text-white mobileProfilTitle ml-3">Compte inscrit</span>
 			<svg 
 				xmlns="http://www.w3.org/2000/svg" 
@@ -41,23 +41,23 @@
 			>
 				<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
 			</svg>
-		</div>
+		</header>
 
 		{# desktop navigation #}
-		<div class="row justify-content-between" id="desktopProfil">
+		<header class="row justify-content-between" id="desktopProfil">
 			<div class="col-2 d-flex justify-content-center align-items-center">
 				<span class="text-white desktopProfilTitle">Compte inscrit</span>
 			</div>
-			<div class="col col-lg-5 col-xl-4 col-xxl-3 d-flex justify-content-between align-items-center">
+			<nav class="col col-lg-5 col-xl-4 col-xxl-3 d-flex justify-content-between align-items-center">
 				<a href="#" class="text-warning navLink">Découvrir le catalogue</a>
 				<a href="{{ path('my_borrowed_books') }}" class="navLink no-active">Emprunts en cours</a>
-			</div>
+			</nav>
 			<div class="col-2 d-flex justify-content-center align-items-center">
 				<a href="{{ path('app_logout') }}" class="text-white navLink">Se déconnecter</a>
 			</div>
-		</div>
+		</header>
 		
-		<div class="mainContainer">
+		<main class="mainContainer">
 			<div class="bookArea">
 				{# Search zone #}
 				<div class="w-100 d-flex justify-content-center">
@@ -74,14 +74,14 @@
 					<div class="col"><span class="genre">Alimentation</span></div>
 				</div>
 				
-				<main>
+				<section id="bookSection">
 					{% include 'registrant/_booksContent.html.twig' %}
-				</main>
+				</section>
 
 				<div class="d-flex justify-content-center mt-5" id="paginationContainer">
 					{{ knp_pagination_render(books, 'pagination.html.twig') }}
 				</div>
 			</div>
-		</div>
+		</main>
 	</div>
 {% endblock %}

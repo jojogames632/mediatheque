@@ -9,18 +9,18 @@
 {% block body %}
 
 	{# mobile navigation (toggle on) #}
-	<div class="w-100 p-3 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
+	<header class="w-100 p-3 d-none justify-content-between align-items-center mobileHeader" id="mobileHeaderOn">
 		<span class="text-white mobileProfilTitle ml-3">Compte administrateur</span>
 		<span class="text-white closeBtn mr-3" onClick="toggleHeader()">X</span>
-		<div class="d-flex flex-column justify-content-center align-items-center navContainer">
+		<nav class="d-flex flex-column justify-content-center align-items-center navContainer">
 			<a href="#" class="text-warning mb-5">Gérer les livres</a>
 			<a href="{{ path('manage_users') }}" class="text-white mb-5">Gérer les utilisateurs</a>
 			<a href="{{ path('app_logout') }}" class="text-white mt-5">Se déconnecter</a>
-		</div>
-	</div>
+		</nav>
+	</header>
 
 	{# mobile navigation (toggle off) #}
-	<div class="w-100 p-3 justify-content-between align-items-center mobileHeader" id="mobileHeaderOff">
+	<header class="w-100 p-3 justify-content-between align-items-center mobileHeader" id="mobileHeaderOff">
 		<span class="text-white mobileProfilTitle ml-3">Compte administrateur</span>
 		<svg 
 			xmlns="http://www.w3.org/2000/svg" 
@@ -34,26 +34,26 @@
 		>
 			<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
 		</svg>
-	</div>
+	</header>
 
 	{# desktop navigation #}
-	<div class="row justify-content-between" id="desktopProfil">
+	<header class="row justify-content-between" id="desktopProfil">
 		<div class="col-sm-3 col-xxl-2 d-flex justify-content-center align-items-center">
 			<span class="text-white desktopProfilTitle">Compte administrateur</span>
 		</div>
-		<div class="col col-lg-4 col-xxl-3 d-flex justify-content-between align-items-center">
+		<nav class="col col-lg-4 col-xxl-3 d-flex justify-content-between align-items-center">
 			<a href="#" class="text-warning navLink">Gérer les livres</a>
 			<a href="{{ path('manage_users') }}" class="navLink no-active">Gérer les utilisateurs</a>
-		</div>
+		</nav>
 		<div class="col-2 d-flex justify-content-center align-items-center">
 			<a href="{{ path('app_logout') }}" class="text-white navLink">Se déconnecter</a>
 		</div>
-	</div>
+	</header>
 
 	<main class="mainContainer">
 		<h1 class="text-center pt-5 mb-4">Gérer les livres</h1>
 
-		<div class="tableContainer p-5">
+		<section class="tableContainer p-5">
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -107,7 +107,7 @@
 				{% endfor %}
 				</tbody>
 			</table>
-		</div>
+		</section>
 
 		<div class="text-center mt-3">
 			<a href="{{ path('create_book') }}">

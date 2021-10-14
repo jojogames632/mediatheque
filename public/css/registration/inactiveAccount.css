@@ -7,7 +7,7 @@ body {
 	flex-direction: column;
 }
 
-p {
+h1 {
 	font-size: 30px;
 }
 
@@ -16,7 +16,7 @@ p {
 }
 
 @media screen and (max-width: 750px) {
-	p {
+	h1 {
 		font-size: 20px;
 	}
 	

@@ -48,8 +48,8 @@
     {{ form_widget(form.holder) }}
     {{ form_errors(form.holder) }}
 
-    <p class="d-flex justify-content-around mt-4">
+    <div class="d-flex justify-content-around mt-4">
         <a href="{{ path('admin_home') }}" class="btn btn-outline-warning">Annuler</a>
         <button type="submit" class="btn btn-outline-warning">Valider</button>
-    </p>
+    </div>
 {{ form_end(form) }}

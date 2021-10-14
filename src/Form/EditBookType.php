@@ -15,7 +15,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Validator\Constraints\Length;
 use App\Entity\User;
 
 class EditBookType extends AbstractType
@@ -25,12 +24,6 @@ class EditBookType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'required' => true,
-                'constraints' => [
-                    new Length([
-                        'maxMessage' => 'Le titre doit contenir au maximum {{ limit }} caractères',
-                        'max' => 255
-                    ])
-                ]
             ])
             ->add('pictureFilename', FileType::class, [
 				'mapped' => false,
@@ -52,22 +45,9 @@ class EditBookType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'required' => true,
-                'constraints' => [
-                    new Length([
-                        'maxMessage' => 'La description doit contenir au maximum {{ limit }} caractères',
-                        'max' => 2000
-                    ])
-                ]
-                
             ])
             ->add('author', TextType::class, [
                 'required' => true,
-                'constraints' => [
-                    new Length([
-                        'maxMessage' => 'L\'auteur doit contenir au maximum {{ limit }} caractères',
-                        'max' => 255
-                    ])
-                ]
             ])
             ->add('genre', ChoiceType::class, [
                 'required' => true,
