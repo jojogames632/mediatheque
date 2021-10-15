@@ -59,10 +59,10 @@ Puis loger vous ``/login``
 
 - Remplissez les valeurs suivantes : 
 
-> Connection Name : mediatheque
-> Hostname : nnsgluut5mye50or.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
-> Username : tk7601ug3s8owmi7
-> Password : yrpmt1b3kecagjvg
+* > Connection Name : mediatheque
+* > Hostname : nnsgluut5mye50or.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+* > Username : tk7601ug3s8owmi7
+* > Password : yrpmt1b3kecagjvg
 
 - Cliquez sur ok puis double cliquez sur la nouvelle connexion créé. 
 
