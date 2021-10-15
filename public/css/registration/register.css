@@ -19,10 +19,10 @@ form {
 	flex-direction: column;
 	justify-content: center;
 	background: linear-gradient(#304769, #0C1E37);
+	overflow-y: scroll;
 }
 
 h1 {
-	margin-bottom: 50px;
 	white-space: nowrap;
 	text-align: center;
 }
@@ -39,7 +39,6 @@ span {
 @media screen and (max-height: 649px) {
 	h1 {
 		font-size: 20px;
-		margin-bottom: 20px;
 	}
 	form {
 		height: 90vh;
@@ -56,7 +55,6 @@ span {
 @media screen and (min-height: 650px) and (max-height: 849px) {
 	h1 {
 		font-size: 15px;
-		margin-bottom: 10px;
 	}
 	form {
 		height: 80vh;
@@ -77,7 +75,6 @@ span {
 @media screen and (min-height: 850px) and (max-height: 1050px) {
 	h1 {
 		font-size: 25px;
-		margin-bottom: 20px;
 	}
 	input {
 		height: 22px;

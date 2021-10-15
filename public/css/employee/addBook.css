@@ -32,6 +32,13 @@ li {
 	}
 }
 
+@media screen and (min-height: 1000px) and (max-height: 1200px) {
+	.formSection {
+		height: 80vh;
+		overflow-y: scroll;
+	}
+}
+
 /* Responsive for form design */
 
 @media screen and (min-width: 800px) and (max-width: 1399px) {
