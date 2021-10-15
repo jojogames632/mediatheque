@@ -4,6 +4,14 @@
 	object-fit: contain;
 }
 
+.borrowedBookInfo {
+	color: #F58728;
+}
+
+.late {
+	color: #ff2a00;
+}
+
 .holderTitle {
 	font-size: 20px;
 }

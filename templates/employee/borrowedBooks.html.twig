@@ -77,6 +77,17 @@
 									<p>Parue le {{ book.releaseDate|date('m/d/Y') }}</p>
 									<p>{{ book.author }}</p>
 									<p>{{ book.genre }}</p>
+									{% set difference = date(now).diff(date(book.borrowingDate)) %}
+									{% set leftDays = 21 - difference.days %}
+									{% if leftDays == 1 %}
+											<p class="borrowedBookInfo">1 jour restant</p>
+									{% elseif leftDays > 0 %}
+											<p class="borrowedBookInfo">{{ leftDays }} jours restants</p>
+									{% elseif leftDays == 0 %}
+											<p class="borrowedBookInfo">Aujourd'hui</p>
+									{% else %}
+											<p class="late">En retard</p>
+									{% endif %}
 								</div>
 							</div>
 							<div class="w-100 text-start p-4 mt-3 bookDescription">

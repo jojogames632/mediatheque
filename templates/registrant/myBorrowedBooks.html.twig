@@ -99,6 +99,8 @@
 												<p class="borrowedBookInfo">Vous n'avez plus qu'un jour pour le rendre</p>
 										{% elseif leftDays > 0 %}
 												<p class="borrowedBookInfo">Vous avec encore {{ leftDays }} jours pour le rendre</p>
+										{% elseif leftDays == 0 %}
+												<p class="borrowedBookInfo">Vous devez rendre ce livre aujourd'hui</p>
 										{% else %}
 												<p class="late">Merci de ramener ce livre au plus vite</p>
 										{% endif %}

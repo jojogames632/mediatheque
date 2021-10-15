@@ -226,10 +226,12 @@ class EmployeeController extends AbstractController
      */
     public function getBorrowedBooksList(BookRepository $bookRepository)
     {
-        $books = $bookRepository->getAllBorrowedBooks(); 
+        $books = $bookRepository->getAllBorrowedBooks();
+        $now = new DateTime();
 
         return $this->render('employee/borrowedBooks.html.twig', [
             'books' => $books,
+            'now' => $now
         ]);
     }
 
