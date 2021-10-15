@@ -2,7 +2,7 @@
 
 La médiathèque moderne
 
-### Prérequi
+## Prérequi
 
 *Prérequis sur votre machine pour le bon fonctionnement de ce projet : 
 - PHP Version 7.4.23 [Installer PHP](https://www.php.net/manual/fr/install.php) --  [Mettre à jour PHP en 7.4 (Ubuntu)](https://www.cloudbooklet.com/upgrade-php-version-to-php-7-4-on-ubuntu/)
@@ -11,7 +11,7 @@ La médiathèque moderne
 - Composer [Installer Composer](https://getcomposer.org/download/) 
 - Npm  [Installer Npm](https://www.npmjs.com/get-npm)  
 
-### Installation
+## Installation
 
 Après avoir cloné le projet avec ``git clone https://github.com/jojogames632/mediatheque.git``
 
@@ -51,7 +51,7 @@ Puis loger vous ``/login``
 - Cliquez sur le bouton "Convertir avec bcrypt!"
 - Votre mot de passe est maintenant hashé, ne fermez pas la page. Vous aurez besoin de ce hash pour créer votre compte admin
 
-## Création d'un compte admin
+### Création d'un compte admin
 
 - Pour commencer vous aurez besoin d'utiliser MySqlWorkbench (https://www.mysql.com/fr/products/workbench/)
 
