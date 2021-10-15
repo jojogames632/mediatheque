@@ -20,7 +20,9 @@ class EditUserType extends AbstractType
                 'required' => true,
                 'invalid_message' => 'Cet adresse email est déja utilisée'
             ])
-            ->add('isActive', CheckboxType::class)
+            ->add('isActive', CheckboxType::class, [
+                'required' => false,
+            ])
             ->add('lastname', TextType::class, [
                 'required' => true,
             ])
