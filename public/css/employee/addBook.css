@@ -16,23 +16,19 @@ li {
 	color: #C63840;
 }
 
-/* Responsive to show form button at the bottom of the page */
+/* Responsive height */
 
-@media screen and (max-height: 680px) {
-	body {
-		height: 160vh;
+@media screen and (max-height: 700px) {
+	.formSection {
+		height: 65vh;
+		overflow-y: scroll;
 	}
 }
 
-@media screen and (min-height: 681px) and (max-height: 800px) {
-	body {
-		height: 140vh;
-	}
-}
-
-@media screen and (min-height: 801px) and (max-height: 999px) {
-	body {
-		height: 130vh;
+@media screen and (min-height: 700px) and (max-height: 999px) {
+	.formSection {
+		height: 75vh;
+		overflow-y: scroll;
 	}
 }
 

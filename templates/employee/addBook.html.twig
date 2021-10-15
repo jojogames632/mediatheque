@@ -59,51 +59,53 @@
 		</header>
 
 		{# main #}
-		<main class="d-flex flex-column align-items-center mainContainer">
-			<h1 class="my-5">Ajouter un livre</h1>
-			{{ form_start(form, {
-				'attr' : {
-					'class' : 'd-flex flex-column'
-				}
-			}) }}
-				{% for message in app.flashes('success') %}
-					<div class="alert alert-success" role="alert">
-						{{ message }}
-					</div>
-				{% endfor %}
-
-				{{ form_label(form.title, 'Titre') }}
-				{{ form_widget(form.title) }}
-				{{ form_errors(form.title) }}
-
-				{{ form_label(form.pictureFilename, 'Image') }}
-				{{ form_widget(form.pictureFilename) }}
-				{{ form_errors(form.pictureFilename) }}
-
-				{{ form_label(form.releaseDate, 'Date de parution') }}
-				{{ form_widget(form.releaseDate) }}
-				{{ form_errors(form.releaseDate) }}
-
-				{{ form_label(form.description) }}
-				{{ form_widget(form.description, {
+		<main class="mainContainer">
+			<section class="formSection d-flex flex-column align-items-center">
+				<h1 class="my-5">Ajouter un livre</h1>
+				{{ form_start(form, {
 					'attr' : {
-						'rows' : '10' 
+						'class' : 'd-flex flex-column'
 					}
 				}) }}
-				{{ form_errors(form.description) }}
+					{% for message in app.flashes('success') %}
+						<div class="alert alert-success" role="alert">
+							{{ message }}
+						</div>
+					{% endfor %}
 
-				{{ form_label(form.author, 'Auteur') }}
-				{{ form_widget(form.author) }}
-				{{ form_errors(form.author) }}
+					{{ form_label(form.title, 'Titre') }}
+					{{ form_widget(form.title) }}
+					{{ form_errors(form.title) }}
 
-				{{ form_label(form.genre) }}
-				{{ form_widget(form.genre) }}
-				{{ form_errors(form.genre) }}
+					{{ form_label(form.pictureFilename, 'Image') }}
+					{{ form_widget(form.pictureFilename) }}
+					{{ form_errors(form.pictureFilename) }}
 
-				<p class="text-center">
-					<button type="submit" class="btn btn-outline-warning mt-5">Ajouter</button>
-				</p>
-			{{ form_end(form) }}
+					{{ form_label(form.releaseDate, 'Date de parution') }}
+					{{ form_widget(form.releaseDate) }}
+					{{ form_errors(form.releaseDate) }}
+
+					{{ form_label(form.description) }}
+					{{ form_widget(form.description, {
+						'attr' : {
+							'rows' : '10' 
+						}
+					}) }}
+					{{ form_errors(form.description) }}
+
+					{{ form_label(form.author, 'Auteur') }}
+					{{ form_widget(form.author) }}
+					{{ form_errors(form.author) }}
+
+					{{ form_label(form.genre) }}
+					{{ form_widget(form.genre) }}
+					{{ form_errors(form.genre) }}
+
+					<p class="text-center">
+						<button type="submit" class="btn btn-outline-warning mt-5">Ajouter</button>
+					</p>
+				{{ form_end(form) }}
+			</section>
 		</main>
 {% endblock %}
 

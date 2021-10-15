@@ -16,11 +16,12 @@ label {
 	margin-top: 5px;
 }
 
-/* Responsive to show form button at the bottom of the page */
+/* Responsive height */
 
-@media screen and (max-height: 680px) {
-	body {
-		height: 105vh;
+@media screen and (max-height: 700px) {
+	.formSection {
+		height: 55vh;
+		overflow-y: scroll;
 	}
 }
 

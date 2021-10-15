@@ -16,29 +16,26 @@ label {
 	margin-top: 5px;
 }
 
-/* Responsive to show form button at the bottom of the page */
+/* Responsive height */
 
-@media screen and (max-height: 680px) {
-	body {
-		height: 185vh;
+@media screen and (max-height: 700px) {
+	.formSection {
+		height: 55vh;
+		overflow-y: scroll;
 	}
 }
 
-@media screen and (min-height: 681px) and (max-height: 800px) {
-	body {
-		height: 170vh;
-	}
-}
-
-@media screen and (min-height: 801px) and (max-height: 999px) {
-	body {
-		height: 155vh;
+@media screen and (min-height: 700px) and (max-height: 999px) {
+	.formSection {
+		height: 60vh;
+		overflow-y: scroll;
 	}
 }
 
 @media screen and (min-height: 1000px) and (max-height: 1199px) {
-	body {
-		height: 120vh;
+	.formSection {
+		height: 70vh;
+		overflow-y: scroll;
 	}
 }
 
