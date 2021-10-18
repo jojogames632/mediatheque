@@ -73,3 +73,20 @@ Puis loger vous ``/login``
 - INSERT INTO user (email, roles, password, is_active, lastname, firstname, birthdate, address) VALUES ('EMAIL', '["ROLE_ADMIN"]', 'MOT DE PASSE HASHÉ', true, LASTNAME, FIRSTNAME, BIRTHDATE, ADDRESS);
 - Cliquez sur le premier logo éclair (à droite de la disquette pour enregistrer) afin d'exécuter la requête.
 - Votre admin est créé !
+
+## Déploiement
+
+Le déploiement a été effectué en suivant ces étapes:
+
+- heroku login
+- heroku create
+- heroku config:set APP_ENV=prod
+
+- ajout de l'add-on jawsdb pour la base de données
+
+- ajout du fichier Procfile
+   - echo 'web: heroku-php-apache2 public/' > Procfile
+   - git add Procfile
+   - git commit -m "Heroku Procfile"
+
+- Pour push les commits en ligne : git push heroku main 
