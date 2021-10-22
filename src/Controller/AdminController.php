@@ -206,15 +206,27 @@ class AdminController extends AbstractController
     /**
      * @Route("delete-user/{id<\d+>}", name="delete_user")
      */
-    public function deleteUser($id, Request $request, UserRepository $userRepository): Response
+    public function deleteUser($id, Request $request, UserRepository $userRepository, BookRepository $bookRepository): Response
     {
         if (!$userRepository->find($id)) {
             throw $this->createNotFoundException(sprintf('L\'utilisateur avec l\'id %s n\'existe pas', $id));
         }
 
-        $user = $userRepository->find($id);
-
         $entityManager = $this->getDoctrine()->getManager();
+        $user = $userRepository->find($id);
+        
+        // set books available again
+        $books = $bookRepository->findByHolder($user);
+
+        foreach ($books as $book) {
+            $book->setHolder(null);
+            $book->setIsBorrowed(false);
+            $book->setReservationDate(null);
+            $book->setBorrowingDate(null);
+            $entityManager->persist($book);
+            $entityManager->flush();
+        }
+
         $entityManager->remove($user);
         $entityManager->flush();
 
