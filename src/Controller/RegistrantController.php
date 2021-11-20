@@ -32,12 +32,11 @@ class RegistrantController extends AbstractController
 
         $user = $this->getUser();
         $books = $bookRepository->getBooksWithTitleAndFilter($title, $filter);
-        $paginatedBooks = $paginator->paginate($books, $page, $limit);
 
         if ($request->get('ajax')) {
             return new JsonResponse([
                 'content' => $this->renderView('registrant/_booksContent.html.twig', [
-                    'books' => $paginatedBooks,
+                    'books' => $books,
                     'user' => $user
                 ])
             ]);
@@ -52,7 +51,7 @@ class RegistrantController extends AbstractController
         ]);
     }
 
-    // Set available again all books reserved 3 days ago or more without someone coming to pick them up
+    // Set available again all books reserved 3 days ago or more
     public function updateBooksReservation(BookRepository $bookRepository)
     {
         $books = $bookRepository->getAllReservedBooks();

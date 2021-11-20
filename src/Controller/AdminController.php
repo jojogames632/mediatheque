@@ -177,7 +177,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/edit-user/{id<\d+>}", name="edit_user")
      */
-    public function editUser($id, Request $request, UserRepository $userRepository, SluggerInterface $slugger): Response
+    public function editUser($id, Request $request, UserRepository $userRepository): Response
     {
         if (!$userRepository->find($id)) {
             throw $this->createNotFoundException(sprintf('L\'utilisateur avec l\'id %s n\'existe pas', $id));
